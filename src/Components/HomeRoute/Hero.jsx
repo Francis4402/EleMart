@@ -6,20 +6,21 @@ import { PiBatteryChargingVertical, PiTelevisionSimpleThin, PiHeadphones } from 
 import { CiMobile3 } from "react-icons/ci";
 import { RxCamera } from "react-icons/rx";
 import {motion} from "framer-motion";
+import {Link} from "react-router-dom";
 
 const Hero = () => {
 
     const logoIcons = [
         {
-            name: "Home Appliances",
+            name: "Home-Appliances",
             icon: <LuMicrowave size={80}/>
         },
         {
-            name: "Smart Watch",
+            name: "Smart-Watch",
             icon: <IoWatchOutline size={80}/>
         },
         {
-            name: "Mobile Phone",
+            name: "Mobile-Phones",
             icon: <CiMobile3 size={80}/>
         },
         {
@@ -31,7 +32,7 @@ const Hero = () => {
             icon: <GiDeliveryDrone size={80}/>
         },
         {
-            name: "Portable Power Station",
+            name: "Portable-Power-Station",
             icon: <GiPowerGenerator size={80}/>
         },
         {
@@ -43,11 +44,11 @@ const Hero = () => {
             icon: <PiTelevisionSimpleThin size={80}/>
         },
         {
-            name: "Game Console",
+            name: "Game-Console",
             icon: <IoGameControllerOutline size={80}/>
         },
         {
-            name: "Action Camera",
+            name: "Action-Camera",
             icon: <RxCamera size={80}/>
         },
         {
@@ -67,10 +68,12 @@ const Hero = () => {
             <div className="flex flex-wrap justify-center gap-5">
                 {
                     logoIcons.map(icons => <div key={icons.name}>
-                        <motion.button whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} transition={{type: "spring", damping: 14, stiffness: 500}} className="bg-white hover:bg-gray-200 p-10 rounded-xl shadow">
-                            <p className="flex justify-center">{icons.icon}</p>
-                            <p className="text-center">{icons.name}</p>
-                        </motion.button>
+                        <Link to={`/${icons.name.toLowerCase()}`}>
+                            <motion.button whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} transition={{type: "spring", damping: 14, stiffness: 500}} className="bg-white hover:bg-gray-200 p-10 rounded-xl shadow">
+                                <p className="flex justify-center">{icons.icon}</p>
+                                <p className="text-center">{icons.name}</p>
+                            </motion.button>
+                        </Link>
                     </div>)
                 }
             </div>

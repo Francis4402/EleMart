@@ -14,6 +14,24 @@ import AdminDashBoard from "./Components/Dashboard/AdminDashBoard.jsx";
 import AddProduct from "./Components/Dashboard/AddProduct.jsx";
 import UpdateProduct from "./Components/Dashboard/UpdateProduct.jsx";
 import FeaturedProduct from "./Components/Dashboard/FeaturedProduct.jsx";
+import AllUsers from "./Components/Dashboard/AllUsers.jsx";
+import PrivateRoute from "./Components/PrivateRoutes/PrivateRoute.jsx";
+import Mobiles from "./Components/ProductRoutes/Mobiles.jsx";
+import HomeAppliances from "./Components/ProductRoutes/Home-Appliances.jsx";
+import SmartWatch from "./Components/ProductRoutes/Smart-Watch.jsx";
+import Headphones from "./Components/ProductRoutes/Headphones.jsx";
+import Drone from "./Components/ProductRoutes/Drone.jsx";
+import PortablePowerStation from "./Components/ProductRoutes/Portable-Power-Station.jsx";
+import Battery from "./Components/ProductRoutes/Battery.jsx";
+import TV from "./Components/ProductRoutes/TV.jsx";
+import GameConsole from "./Components/ProductRoutes/GameConsole.jsx";
+import ActionCamera from "./Components/ProductRoutes/Action-Camera.jsx";
+import Printer from "./Components/ProductRoutes/Printer.jsx";
+import WApple from "./Components/BrandRoutes/SmartWatchesBrands/WApple.jsx";
+import WGoogle from "./Components/BrandRoutes/SmartWatchesBrands/WGoogle.jsx";
+import WRealme from "./Components/BrandRoutes/SmartWatchesBrands/WRealme.jsx";
+import WHuawei from "./Components/BrandRoutes/SmartWatchesBrands/WHuawei.jsx";
+import WWalton from "./Components/BrandRoutes/SmartWatchesBrands/WWalton.jsx";
 
 const queryClient = new QueryClient();
 
@@ -33,12 +51,78 @@ const routes = createBrowserRouter([
       {
         path: '/register',
         element: <PrivateRoute2><SignUp/></PrivateRoute2>
+      },
+      {
+        path: '/home-appliances',
+        element: <HomeAppliances/>
+      },
+      {
+        path: '/smart-watch',
+        element: <SmartWatch/>,
+        children: [
+          {
+            path: 'apple',
+            element: <WApple/>
+          },
+          {
+            path: 'google',
+            element: <WGoogle/>
+          },
+          {
+            path: 'realme',
+            element: <WRealme/>
+          },
+          {
+            path: 'huawei',
+            element: <WHuawei/>
+          },
+          {
+            path: 'walton',
+            element: <WWalton/>
+          }
+        ]
+      },
+      {
+        path: '/mobile-phones',
+        element: <Mobiles/>
+      },
+      {
+        path: '/headphone',
+        element: <Headphones/>
+      },
+      {
+        path: '/drone',
+        element: <Drone/>
+      },
+      {
+        path: '/portable-power-station',
+        element: <PortablePowerStation/>
+      },
+      {
+        path: '/battery',
+        element: <Battery/>
+      },
+      {
+        path: '/tv',
+        element: <TV/>
+      },
+      {
+        path: '/game-console',
+        element: <GameConsole/>
+      },
+      {
+        path: '/action-camera',
+        element: <ActionCamera/>
+      },
+      {
+        path: '/printer',
+        element: <Printer/>
       }
     ]
   },
   {
     path: 'admindashboard',
-    element: <AdminDashBoard/>,
+    element: <PrivateRoute><AdminDashBoard/></PrivateRoute>,
     children: [
       {
         path: 'addproducts',
@@ -51,6 +135,10 @@ const routes = createBrowserRouter([
       {
         path: 'featuredproducts',
         element: <FeaturedProduct/>
+      },
+      {
+        path: 'allusers',
+        element: <AllUsers/>
       }
     ]
   }

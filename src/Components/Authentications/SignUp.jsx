@@ -1,4 +1,3 @@
-import UseAxiosPublic from '../Axiosfiles/useAxiosPublic'
 import {useForm} from "react-hook-form";
 import {FaEye, FaEyeSlash} from "react-icons/fa";
 import {useState} from "react";
@@ -43,7 +42,7 @@ const SignUp = () => {
                                         showConfirmButton: false,
                                         timer: 1500
                                     })
-                                    navigate('/');
+                                    navigate('/dashboard');
                                 }
                             })
                     })
@@ -67,7 +66,7 @@ const SignUp = () => {
                                     <label className="label">
                                         <span className="label-text">Name</span>
                                     </label>
-                                    <input {...register("name", {required: true})} type="text" placeholder="name" className="input input-bordered" />
+                                    <input {...register("name", {required: true})} type="text" placeholder="name" className="input input-bordered w-full" />
                                 </div>
 
                                 <div className="form-control">
@@ -81,7 +80,7 @@ const SignUp = () => {
                                     <label className="label">
                                         <span className="label-text">Email</span>
                                     </label>
-                                    <input {...register("email", {required: true})} name="email" type="email" placeholder="email" className="input input-bordered" />
+                                    <input {...register("email", {required: true})} name="email" type="email" placeholder="email" className="input input-bordered w-full" />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
@@ -92,7 +91,7 @@ const SignUp = () => {
                                             <input type={showPassword ? "text" : "password"}  {...register("password", {
                                                 required: true, minLength: 6, maxLength: 20,
                                                 pattern: /(?=.*[A-Z])(?=.*[!@#$&*+-])(?=.*[0-9])(?=.*[a-z])/
-                                            })} name="password" placeholder="password" className="input input-bordered" />
+                                            })} name="password" placeholder="password" className="input input-bordered w-full" />
                                             {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
                                             {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 required</p>}
                                             {errors.password?.type === 'maxLength' && <p className="text-red-600">Password must be less required</p>}
@@ -122,7 +121,7 @@ const SignUp = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+        </div>
     </div>
   )
 }

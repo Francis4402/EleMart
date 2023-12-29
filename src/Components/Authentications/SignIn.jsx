@@ -5,6 +5,7 @@ import {Link, useLocation, useNavigate} from "react-router-dom";
 import {FaEye, FaEyeSlash} from "react-icons/fa";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import {motion} from "framer-motion";
 
 const SignIn = () => {
   const axiosPublic = useAxiosPublic();
@@ -76,7 +77,7 @@ const SignIn = () => {
                   <label className="label">
                     <span className="label-text">Email</span>
                   </label>
-                  <input name="email" type="email" placeholder="email" className="input input-bordered" required />
+                  <input name="email" type="email" placeholder="email" className="input input-bordered w-full" required />
                 </div>
                 <div className="form-control">
                   <label className="label">

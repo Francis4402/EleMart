@@ -15,7 +15,7 @@ const PrivateRoute2 = ({children}) => {
         return children;
     }
 
-    return <Navigate to="/" state={{from: location}} replace />
+    return <Navigate to="/admindashboard" state={{from: location}} replace />
 };
 
 PrivateRoute2.propTypes = {
