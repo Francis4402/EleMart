@@ -1,16 +1,18 @@
-import useCategory from "../../Hooks/useCategory.jsx";
 import {FaCartPlus} from "react-icons/fa";
-
-const WApple = () => {
+import useCategory from "../../Hooks/useCategory.jsx";
+const getRandomorder = () => Math.random() - 0.5;
+const WAll = () => {
 
     const [products] = useCategory();
-    const applewatch = products.filter(b => b.brands === 'apple');
+    const smartwatch = products.filter(watchs => watchs.category === 'smartwatch');
+
+    const randomizedSmartwatches = smartwatch.sort(getRandomorder);
 
     return (
         <div>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 my-4'>
                 {
-                    applewatch.map(w => <div key={w?.id}>
+                    randomizedSmartwatches.map(w => <div key={w?.id}>
                         <div className="card w-full h-fit bg-base-100 shadow-xl">
                             <figure><img src={w.image} width={250} height={100} alt="Shoes" /></figure>
                             <div className="card-body">
@@ -36,4 +38,4 @@ const WApple = () => {
     );
 };
 
-export default WApple;
+export default WAll;

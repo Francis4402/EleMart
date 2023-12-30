@@ -32,6 +32,7 @@ import WGoogle from "./Components/BrandRoutes/SmartWatchesBrands/WGoogle.jsx";
 import WRealme from "./Components/BrandRoutes/SmartWatchesBrands/WRealme.jsx";
 import WHuawei from "./Components/BrandRoutes/SmartWatchesBrands/WHuawei.jsx";
 import WWalton from "./Components/BrandRoutes/SmartWatchesBrands/WWalton.jsx";
+import WAll from "./Components/BrandRoutes/SmartWatchesBrands/WAll.jsx";
 
 const queryClient = new QueryClient();
 
@@ -60,6 +61,10 @@ const routes = createBrowserRouter([
         path: '/smart-watch',
         element: <SmartWatch/>,
         children: [
+          {
+            path: '/smart-watch',
+            element: <WAll/>
+          },
           {
             path: 'apple',
             element: <WApple/>

@@ -23,7 +23,7 @@ const AddProduct = () => {
             const productsdata = {
                 name: data.name,
                 image: res.data.data.display_url,
-                price: res.data.price,
+                price: data.price,
                 modelname: data.modelname,
                 display: data.display,
                 processor: data.processor,
@@ -115,7 +115,7 @@ const AddProduct = () => {
                                     <label className="label">
                                         <span className="label-text">Extra Features</span>
                                     </label>
-                                    <input type="text" {...register('extrafeatures', {required: true})} placeholder="Water Resistant" className="input input-bordered w-full max-w-xs" />
+                                    <input type="text" {...register('extrafeatures', {required: true})} placeholder="Extra Features" className="input input-bordered w-full max-w-xs" />
                                 </div>
 
                                 <div className="form-control">
