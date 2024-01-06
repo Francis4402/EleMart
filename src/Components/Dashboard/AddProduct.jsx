@@ -36,6 +36,7 @@ const AddProduct = () => {
                 cputype: data.cputype,
                 gpu: data.gpu,
                 ram: data.ram,
+                internalstorage: data.internalstorage,
                 cardslot: data.cardslot,
                 rcamresolution: data.rcamresolution,
                 rcamfeatures: data.rcamfeatures,
@@ -62,12 +63,14 @@ const AddProduct = () => {
                 materials: data.materials,
                 colors: data.colors,
                 warranty: data.warranty,
+                batterydescriptiontitle: data.batterydescriptiontitle,
                 description1: data.description1,
                 description2: data.description2,
                 description3: data.description3,
                 description4: data.description4,
                 description5: data.description5,
                 description6: data.description6,
+                category: data.category,
                 brands: data.brands,
             }
             const AddProducts = await axiosPublic.post('/addproduct', productsdata);
@@ -76,7 +79,15 @@ const AddProduct = () => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: `Product added`,
+                    title: 'Product added',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            } else {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: 'Fill all the inputs',
                     showConfirmButton: false,
                     timer: 1500
                 })
@@ -519,6 +530,13 @@ const AddProduct = () => {
                                         <span className="label-text">Warranty</span>
                                     </label>
                                     <input type="text" {...register('warranty', {required: true})} placeholder="Warranty" className="input input-bordered w-full max-w-xl" />
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Battery Description Title</span>
+                                    </label>
+                                    <input type="text" {...register('batterydescriptiontitle', {required: true})} placeholder="Battery Description Title" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="my-2">

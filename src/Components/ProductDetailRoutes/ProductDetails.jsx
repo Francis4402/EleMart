@@ -7,7 +7,7 @@ import useAxiosPublic from "../Axiosfiles/useAxiosPublic.jsx";
 import Swal from "sweetalert2";
 const ProductDetails = () => {
 
-    const {_id, name, image, price, modelname, display, processor, features, extrafeatures} = useLoaderData();
+    const {_id, name, image, price, modelname, displaytype, chipset, sensor, iprating} = useLoaderData();
 
     const [number, setNumber] = useState(1);
 
@@ -28,9 +28,9 @@ const ProductDetails = () => {
             image: image,
             price: price,
             modelname: modelname,
-            display: display,
-            processor: processor,
-            features: features,
+            display: displaytype,
+            processor: chipset,
+            sensor: sensor,
             quantity: number,
         };
         axiosPublic.post('/cart', payload)
@@ -68,10 +68,10 @@ const ProductDetails = () => {
                                 <h1 className="text-xl font-semibold my-4">Key Features</h1>
                                 <ul className="grid gap-2">
                                     <li>{modelname}</li>
-                                    <li>{display}</li>
-                                    <li>{processor}</li>
-                                    <li>{features}</li>
-                                    <li>{extrafeatures}</li>
+                                    <li>{displaytype}</li>
+                                    <li>{chipset}</li>
+                                    <li>{sensor}</li>
+                                    <li>{iprating}</li>
                                 </ul>
                                 <div className="my-4">
                                     <h1 className="text-lg font-semibold">Payment Options</h1>
