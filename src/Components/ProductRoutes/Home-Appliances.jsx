@@ -1,5 +1,8 @@
 
 const HomeAppliances = () => {
+
+
+
     return (
         <div>
             

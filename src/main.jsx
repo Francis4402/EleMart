@@ -33,6 +33,11 @@ import WRealme from "./Components/BrandRoutes/SmartWatchesBrands/WRealme.jsx";
 import WHuawei from "./Components/BrandRoutes/SmartWatchesBrands/WHuawei.jsx";
 import WWalton from "./Components/BrandRoutes/SmartWatchesBrands/WWalton.jsx";
 import WAll from "./Components/BrandRoutes/SmartWatchesBrands/WAll.jsx";
+import ProductDetails from "./Components/ProductDetailRoutes/ProductDetails.jsx";
+import Specification from "./Components/ProductDetailRoutes/Specification.jsx";
+import Description from "./Components/ProductDetailRoutes/Description.jsx";
+import Questions from "./Components/ProductDetailRoutes/Questions.jsx";
+import Reviews from "./Components/ProductDetailRoutes/Reviews.jsx";
 
 const queryClient = new QueryClient();
 
@@ -122,6 +127,31 @@ const routes = createBrowserRouter([
       {
         path: '/printer',
         element: <Printer/>
+      },
+      {
+        path: '/:name/:id',
+        element: <ProductDetails/>,
+        loader: ({params}) => fetch(`http://localhost:3000/product/${params.name}/${params.id}`),
+        children: [
+          {
+            path: '/:name/:id',
+            element: <Specification/>,
+            loader: ({params}) => fetch(`http://localhost:3000/product/${params.name}/${params.id}`)
+          },
+          {
+            path: '/:name/:id/description',
+            element: <Description/>,
+            loader: ({params}) => fetch(`http://localhost:3000/product/${params.name}/${params.id}`)
+          },
+          {
+            path: '/:name/:id/questions',
+            element: <Questions/>
+          },
+          {
+            path: '/:name/:id/reviews',
+            element: <Reviews/>
+          }
+        ]
       }
     ]
   },

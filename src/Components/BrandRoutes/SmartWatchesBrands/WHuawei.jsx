@@ -1,10 +1,11 @@
 import {FaCartPlus} from "react-icons/fa";
 import useCategory from "../../Hooks/useCategory.jsx";
+import {Link} from "react-router-dom";
 
 const WHuawei = () => {
 
     const [products] = useCategory();
-    const huaweiwatch = products.filter(b => b.brands === 'huawei');
+    const huaweiwatch = products.filter(b => b.category === 'smartwatch' && b.brands === 'huawei');
 
     return (
         <div>
@@ -12,9 +13,9 @@ const WHuawei = () => {
                 {
                     huaweiwatch.map(w => <div key={w?.id}>
                         <div className="card w-full h-fit bg-base-100 shadow-xl">
-                            <figure><img src={w.image} width={250} height={100} alt="Shoes" /></figure>
+                            <figure><Link to={`/${w?.name}/${w?._id}`}><img src={w.image} width={250} height={100} alt="i" /></Link></figure>
                             <div className="card-body">
-                                <h2 className="card-title">{w.name}</h2>
+                                <Link to={`/${w?.name}/${w?._id}`}><h2 className="card-title hover:underline">{w.name}</h2></Link>
                                 <div className="grid gap-2 text-gray-500 my-4">
                                     <li>{w.display}</li>
                                     <li>{w.processor}</li>

@@ -3,7 +3,6 @@ import {Link, Outlet} from "react-router-dom";
 const SmartWatch = () => {
 
 
-
     const brands = [
         {
             id: 1,
