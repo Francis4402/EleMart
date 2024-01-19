@@ -38,6 +38,32 @@ import Specification from "./Components/ProductDetailRoutes/Specification.jsx";
 import Description from "./Components/ProductDetailRoutes/Description.jsx";
 import Questions from "./Components/ProductDetailRoutes/Questions.jsx";
 import Reviews from "./Components/ProductDetailRoutes/Reviews.jsx";
+import AllProducts from "./Components/Home-appliance-Product-Routes/AllProducts.jsx";
+import AC from "./Components/Home-appliance-Product-Routes/AC.jsx";
+import AirFryer from "./Components/Home-appliance-Product-Routes/Air-Fryer.jsx";
+import Geyser from "./Components/Home-appliance-Product-Routes/Geyser.jsx";
+import Oven from "./Components/Home-appliance-Product-Routes/Oven.jsx";
+import WashingMachine from "./Components/Home-appliance-Product-Routes/Washing-Machine.jsx";
+import MAll from "./Components/BrandRoutes/SmartMobileBrands/MAll.jsx";
+import MApple from "./Components/BrandRoutes/SmartMobileBrands/MApple.jsx";
+import MGoogle from "./Components/BrandRoutes/SmartMobileBrands/MGoogle.jsx";
+import MMotorola from "./Components/BrandRoutes/SmartMobileBrands/MMotorola.jsx";
+import MOnePlus from "./Components/BrandRoutes/SmartMobileBrands/MOnePlus.jsx";
+import MVivo from "./Components/BrandRoutes/SmartMobileBrands/MVivo.jsx";
+import AAll from "./Components/BrandRoutes/ACBrands/AAll.jsx";
+import ASamsung from "./Components/BrandRoutes/ACBrands/ASamsung.jsx";
+import AGree from "./Components/BrandRoutes/ACBrands/AGree.jsx";
+import ASinger from "./Components/BrandRoutes/ACBrands/ASinger.jsx";
+import AGeneral from "./Components/BrandRoutes/ACBrands/AGeneral.jsx";
+import AirFryerAll from "./Components/BrandRoutes/AirFryerBrands/AirFryerAll.jsx";
+import AirXiaomi from "./Components/BrandRoutes/AirFryerBrands/AirXiaomi.jsx";
+import GAll from "./Components/BrandRoutes/GeyserBrands/GAll.jsx";
+import GMidea from "./Components/BrandRoutes/GeyserBrands/GMidea.jsx";
+import GTropica from "./Components/BrandRoutes/GeyserBrands/GTropica.jsx";
+import OAll from "./Components/BrandRoutes/OvenBrands/OAll.jsx";
+import OWalton from "./Components/BrandRoutes/OvenBrands/OWalton.jsx";
+import WashAll from "./Components/BrandRoutes/Washing-Machine/WashAll.jsx";
+import WHaier from "./Components/BrandRoutes/Washing-Machine/WHaier.jsx";
 
 const queryClient = new QueryClient();
 
@@ -60,14 +86,106 @@ const routes = createBrowserRouter([
       },
       {
         path: '/home-appliances',
-        element: <HomeAppliances/>
+        element: <HomeAppliances/>,
+        children: [
+          {
+            path: '',
+            element: <AllProducts/>
+          },
+          {
+            path: 'ac',
+            element: <AC/>,
+            children: [
+              {
+                path: '',
+                element: <AAll/>
+              },
+              {
+                path: 'samsung',
+                element: <ASamsung/>
+              },
+              {
+                path: 'gree',
+                element: <AGree/>
+              },
+              {
+                path: 'singer',
+                element: <ASinger/>
+              },
+              {
+                path: 'general',
+                element: <AGeneral/>
+              }
+            ]
+          },
+          {
+            path: 'air-fryer',
+            element: <AirFryer/>,
+            children: [
+              {
+                path: '',
+                element: <AirFryerAll/>
+              },
+              {
+                path: 'xiaomi',
+                element: <AirXiaomi/>
+              }
+            ]
+          },
+          {
+            path: 'geyser',
+            element: <Geyser/>,
+            children: [
+              {
+                path: '',
+                element: <GAll/>
+              },
+              {
+                path: 'midea',
+                element: <GMidea/>
+              },
+              {
+                path: 'tropica',
+                element: <GTropica/>
+              }
+            ]
+          },
+          {
+            path: 'oven',
+            element: <Oven/>,
+            children: [
+              {
+                path: '',
+                element: <OAll/>
+              },
+              {
+                path: 'walton',
+                element: <OWalton/>
+              }
+            ]
+          },
+          {
+            path: 'washing-machine',
+            element: <WashingMachine/>,
+            children: [
+              {
+                path: '',
+                element: <WashAll/>
+              },
+              {
+                path: 'haier',
+                element: <WHaier/>
+              }
+            ]
+          }
+        ]
       },
       {
         path: '/smart-watch',
         element: <SmartWatch/>,
         children: [
           {
-            path: '/smart-watch',
+            path: '',
             element: <WAll/>
           },
           {
@@ -94,7 +212,33 @@ const routes = createBrowserRouter([
       },
       {
         path: '/mobile-phones',
-        element: <Mobiles/>
+        element: <Mobiles/>,
+        children: [
+          {
+            path: '',
+            element: <MAll/>
+          },
+          {
+            path: 'apple',
+            element: <MApple/>
+          },
+          {
+            path: 'google',
+            element: <MGoogle/>
+          },
+          {
+            path: 'motorola',
+            element: <MMotorola/>
+          },
+          {
+            path: 'oneplus',
+            element: <MOnePlus/>
+          },
+          {
+            path: 'vivo',
+            element: <MVivo/>
+          }
+        ]
       },
       {
         path: '/headphone',

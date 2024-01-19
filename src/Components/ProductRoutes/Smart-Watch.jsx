@@ -34,7 +34,18 @@ const SmartWatch = () => {
 
                     <div className="navbar">
                         <div className="navbar-center">
-                            <Link to="/smart-watch"><ul className="menu menu-horizontal px-1 font-semibold"><li className="bg-gray-200 rounded-lg"><a>All</a></li></ul></Link>
+                            {
+                                brands.length > 1 && (
+                                    <Link to="/smart-watch">
+                                        <ul className="menu menu-horizontal px-1 font-semibold">
+                                            <li className="bg-gray-200 rounded-lg">
+                                                <a>All</a>
+                                            </li>
+                                        </ul>
+                                    </Link>
+                                )
+                            }
+
                             {
                                 brands.map(b => <div key={b?.id}>
                                     <Link to={`${b.title.toLowerCase()}`}>

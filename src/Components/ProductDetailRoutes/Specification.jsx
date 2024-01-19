@@ -2,14 +2,17 @@ import {useLoaderData} from "react-router-dom";
 
 const Specification = () => {
 
-    const {size, displaytype, chipset, resolution, brightness, displayfeatures, cputype, gpu, ram, internalstorage, cardslot, rcamresolution, rcamfeatures, rvideorecording, fcamresolution, fcamfeatures, fcamvideorecording, speaker, audiofeatures, sim, wifi, bluetooth, gps, nfc, audiojack, operatingsystem, sensor, iprating, otherfeatures, batterytype, charging, dimension, weight, materials, colors, warranty} = useLoaderData();
+    const {size, displaytype, chipset, resolution, brightness, displayfeatures, cputype, gpu, ram, internalstorage, cardslot, rcamresolution, rcamfeatures, rvideorecording, fcamresolution, fcamfeatures, fcamvideorecording, speaker, audiofeatures, sim, wifi, bluetooth, gps, nfc, audiojack, operatingsystem, sensor, iprating, otherfeatures, batterytype, charging, dimension, weight, materials, colors, warranty, installationspolicy} = useLoaderData();
 
     return (
         <div className="my-6">
             <div className="bg-white p-4 rounded-lg">
                 <h1 className="font-semibold text-xl">Specification</h1>
 
-                <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Display</p>
+                {
+                    displaytype === 'N' ? '' : <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Display</p>
+                }
+
 
                 {
                     size === 'N' ? '' : <div className="p-2 border-b">
@@ -221,7 +224,10 @@ const Specification = () => {
                     </>
                 }
 
-                <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Features</p>
+                {
+                    otherfeatures === 'N' ? '' : <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Features</p>
+                }
+
 
                 {
                     sensor === 'N' ? '' : <div className="p-2 border-b">
@@ -262,8 +268,10 @@ const Specification = () => {
                     </div>
                 }
 
+                {
+                    dimension === 'N' ? '' : <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Physical Specification</p>
+                }
 
-                <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Physical Specification</p>
 
                 {
                     dimension === 'N' ? '' : <div className="p-2 border-b">
@@ -293,13 +301,27 @@ const Specification = () => {
                     </div>
                 }
 
+                {
+                    warranty === 'N' ? '' : <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Basic Information</p>
+                }
 
-                <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Warranty Information</p>
+                {
+                    warranty === 'N' ? '' : <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Warranty Information</p>
+                }
 
-                <div className="p-2 border-b">
-                    <p className="text-gray-400">Warranty</p>
-                    <p className="mb-2">{warranty}</p>
-                </div>
+                {
+                    warranty === 'N' ? '' : <div className="p-2 border-b">
+                        <p className="text-gray-400">Warranty</p>
+                        <p className="mb-2">{warranty}</p>
+                    </div>
+                }
+
+                {
+                    installationspolicy === 'N' ? '' : <div className="p-2 border-b">
+                        <p className="text-gray-400">Installation Policy</p>
+                        <p className="mb-2">{warranty}</p>
+                    </div>
+                }
 
             </div>
         </div>

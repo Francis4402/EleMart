@@ -64,6 +64,24 @@ const AddProduct = () => {
                 colors: data.colors,
                 warranty: data.warranty,
                 batterydescriptiontitle: data.batterydescriptiontitle,
+                actype: data.actype,
+                technology: data.technology,
+                capacity: data.capacity,
+                coverage: data.coverage,
+                energysavingrating: data.energysavingrating,
+                capacityofcooling: data.capacityofcooling,
+                acweight: data.acweight,
+                feature1: data.feature1,
+                feature2: data.feature2,
+                feature3: data.feature3,
+                feature4: data.feature4,
+                description1title: data.description1title,
+                description2title: data.description2title,
+                description3title: data.description3title,
+                description4title: data.description4title,
+                description5title: data.description5title,
+                description6title: data.description6title,
+                description7title: data.description7title,
                 description1: data.description1,
                 description2: data.description2,
                 description3: data.description3,
@@ -134,6 +152,11 @@ const AddProduct = () => {
                                             <option value="">Select Category</option>
                                             <option value="smartwatch">Smart Watch</option>
                                             <option value="mobiles">Mobiles</option>
+                                            <option value="ac">AC</option>
+                                            <option value="geyser">Geyser</option>
+                                            <option value="oven">Oven</option>
+                                            <option value="airfryer">Air-Fryer</option>
+                                            <option value="washingmachine">Washing-Machine</option>
                                         </select>
                                     </div>
 
@@ -152,14 +175,59 @@ const AddProduct = () => {
                                                     <option value="walton">Walton</option>
                                                 </>
                                             )}
+
                                             {
                                                 category === "mobiles" && (
                                                     <>
                                                         <option value="apple">Apple</option>
                                                         <option value="google">Google</option>
-                                                        <option value="realme">Realme</option>
-                                                        <option value="huawei">Huawei</option>
+                                                        <option value="motorola">Motorola</option>
+                                                        <option value="oneplus">OnePlus</option>
+                                                        <option value="vivo">Vivo</option>
+                                                    </>
+                                                )
+                                            }
+
+                                            {
+                                                category === 'ac' && (
+                                                    <>
+                                                        <option value="samsung">Samsung</option>
+                                                        <option value="gree">Gree</option>
+                                                        <option value="singer">Singer</option>
+                                                        <option value="ganeral">General</option>
+                                                    </>
+                                                )
+                                            }
+
+                                            {
+                                                category === 'geyser' && (
+                                                    <>
+                                                        <option value="midea">Midea</option>
+                                                        <option value="tropica">Tropica</option>
+                                                    </>
+                                                )
+                                            }
+
+                                            {
+                                                category === 'oven' && (
+                                                    <>
                                                         <option value="walton">Walton</option>
+                                                    </>
+                                                )
+                                            }
+
+                                            {
+                                                category === 'airfryer' && (
+                                                    <>
+                                                        <option value="xiaomi">Xiaomi</option>
+                                                    </>
+                                                )
+                                            }
+
+                                            {
+                                                category === 'washingmachine' && (
+                                                    <>
+                                                        <option value="haier">Haier</option>
                                                     </>
                                                 )
                                             }
@@ -307,7 +375,7 @@ const AddProduct = () => {
                                         <label className="label">
                                             <span className="label-text">RCam Features</span>
                                         </label>
-                                        <input type="text" {...register('rcamfeatures', {required: true})} placeholder="Speaker" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" {...register('rcamfeatures', {required: true})} placeholder="Features" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -534,13 +602,120 @@ const AddProduct = () => {
 
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text">Battery Description Title</span>
+                                        <span className="label-text">Installation Policy</span>
                                     </label>
-                                    <input type="text" {...register('batterydescriptiontitle', {required: true})} placeholder="Battery Description Title" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" {...register('installationspolicy', {required: true})} placeholder="Installation Policy" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="my-2">
+                                    <h1 className="font-semibold bg-gray-900 text-white p-2 rounded-lg">AC Basic Information</h1>
+                                </div>
+
+                                <div className="grid lg:grid-cols-2 gap-4">
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">AC Type</span>
+                                        </label>
+                                        <input type="text" {...register('actype', {required: true})} placeholder="Type" className="input input-bordered w-full max-w-xl" />
+                                    </div>
+
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Technology</span>
+                                        </label>
+                                        <input type="text" {...register('technology', {required: true})} placeholder="Technology" className="input input-bordered w-full max-w-xl" />
+                                    </div>
+                                </div>
+
+                                <div className="grid lg:grid-cols-2 gap-4">
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Capacity</span>
+                                        </label>
+                                        <input type="text" {...register('capacity', {required: true})} placeholder="Capacity" className="input input-bordered w-full max-w-xl" />
+                                    </div>
+
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Coverage</span>
+                                        </label>
+                                        <input type="text" {...register('coverage', {required: true})} placeholder="Capacity" className="input input-bordered w-full max-w-xl" />
+                                    </div>
+                                </div>
+
+                                <div className="grid lg:grid-cols-2 gap-4">
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Energy Saving Rating</span>
+                                        </label>
+                                        <input type="text" {...register('energysavingrating', {required: true})} placeholder="Energy Saving Rating" className="input input-bordered w-full max-w-xl" />
+                                    </div>
+
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Capacity of Cooling(BTU)</span>
+                                        </label>
+                                        <input type="text" {...register('capacityofcooling', {required: true})} placeholder="Capacity of Cooling" className="input input-bordered w-full max-w-xl" />
+                                    </div>
+                                </div>
+
+                                <div className="my-2">
+                                    <h1 className="font-semibold bg-gray-900 text-white p-2 rounded-lg">AC Key Features</h1>
+                                </div>
+
+                                <div className="grid lg:grid-cols-2 gap-4">
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Feature 1</span>
+                                        </label>
+                                        <input type="text" {...register('feature1', {required: true})} placeholder="Feature 1" className="input input-bordered w-full max-w-xl" />
+                                    </div>
+
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Feature 2</span>
+                                        </label>
+                                        <input type="text" {...register('feature2', {required: true})} placeholder="Feature 2" className="input input-bordered w-full max-w-xl" />
+                                    </div>
+                                </div>
+
+                                <div className="grid lg:grid-cols-2 gap-4">
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Feature 3</span>
+                                        </label>
+                                        <input type="text" {...register('feature3', {required: true})} placeholder="Feature 3" className="input input-bordered w-full max-w-xl" />
+                                    </div>
+
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Feature 4</span>
+                                        </label>
+                                        <input type="text" {...register('feature4', {required: true})} placeholder="Feature 4" className="input input-bordered w-full max-w-xl" />
+                                    </div>
+                                </div>
+
+                                <div className="my-2">
+                                    <h1 className="font-semibold bg-gray-900 text-white p-2 rounded-lg">AC Physical Specification</h1>
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">AC Weight</span>
+                                    </label>
+                                    <input type="text" {...register('acweight', {required: true})} placeholder="AC Weight" className="input input-bordered w-full max-w-xl" />
+                                </div>
+
+
+                                <div className="my-2">
                                     <h1 className="font-semibold bg-gray-900 text-white p-2 rounded-lg">Description</h1>
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Description1 Title</span>
+                                    </label>
+                                    <input type="text" {...register('description1title', {required: true})} placeholder="Description1 Title" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
@@ -552,9 +727,23 @@ const AddProduct = () => {
 
                                 <div className="form-control">
                                     <label className="label">
+                                        <span className="label-text">Description2 Title</span>
+                                    </label>
+                                    <input type="text" {...register('description2title', {required: true})} placeholder="Description2 Title" className="input input-bordered w-full max-w-xl" />
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label">
                                         <span className="label-text">Description-2</span>
                                     </label>
                                     <textarea type="text" {...register('description2', {required: true})} placeholder="Description 2" className="textarea textarea-bordered w-full max-w-xl" />
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Description3 Title</span>
+                                    </label>
+                                    <input type="text" {...register('description3title', {required: true})} placeholder="Description3 Title" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
@@ -566,9 +755,23 @@ const AddProduct = () => {
 
                                 <div className="form-control">
                                     <label className="label">
+                                        <span className="label-text">Description4 Title</span>
+                                    </label>
+                                    <input type="text" {...register('description4title', {required: true})} placeholder="Description4 Title" className="input input-bordered w-full max-w-xl" />
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label">
                                         <span className="label-text">Description-4</span>
                                     </label>
                                     <textarea type="text" {...register('description4', {required: true})} placeholder="Description 4" className="textarea textarea-bordered w-full max-w-xl" />
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Description5 Title</span>
+                                    </label>
+                                    <input type="text" {...register('description5title', {required: true})} placeholder="Description5 Title" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
@@ -580,9 +783,30 @@ const AddProduct = () => {
 
                                 <div className="form-control">
                                     <label className="label">
+                                        <span className="label-text">Description6 Title</span>
+                                    </label>
+                                    <input type="text" {...register('description6title', {required: true})} placeholder="Description6 Title" className="input input-bordered w-full max-w-xl" />
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label">
                                         <span className="label-text">Description-6</span>
                                     </label>
                                     <textarea type="text" {...register('description6', {required: true})} placeholder="Description 6" className="textarea textarea-bordered w-full max-w-xl" />
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Description7 Title</span>
+                                    </label>
+                                    <input type="text" {...register('description7title', {required: true})} placeholder="Description7 Title" className="input input-bordered w-full max-w-xl" />
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Description-7</span>
+                                    </label>
+                                    <textarea type="text" {...register('description7', {required: true})} placeholder="Description 7" className="textarea textarea-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control mt-6">

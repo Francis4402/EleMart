@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WAll = () => {
+const WashAll = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const WAll = () => {
     );
 };
 
-export default WAll;
+export default WashAll;

@@ -3,18 +3,17 @@ import useCategory from "../../Hooks/useCategory.jsx";
 import {Link} from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Axiosfiles/useAxiosPublic.jsx";
-const getRandomorder = () => Math.random() - 0.5;
-const WAll = () => {
 
+const WAll = () => {
+    const getRandomorder = () => Math.random() - 0.5;
     const [products] = useCategory();
     const smartwatch = products.filter(watchs => watchs.category === 'smartwatch');
 
     const randomizedSmartwatches = smartwatch.sort(getRandomorder);
-    console.log(smartwatch);
 
     const axiosPublic = useAxiosPublic();
-    const handleAddtoCart = (smartwatch) => {
-        axiosPublic.post('/cart', smartwatch)
+    const handleAddtoCart = () => {
+        axiosPublic.post('/cart')
             .then((res) => {
                 if(res.data.insertedId){
                     Swal.fire({
@@ -29,6 +28,7 @@ const WAll = () => {
 
     return (
         <div>
+            <hr/>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 my-4'>
                 {
                     randomizedSmartwatches.map(w => <div key={w?.id}>

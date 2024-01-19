@@ -9,6 +9,7 @@ const WHuawei = () => {
 
     return (
         <div>
+            <hr/>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 my-4'>
                 {
                     huaweiwatch.map(w => <div key={w?.id}>
@@ -17,10 +18,10 @@ const WHuawei = () => {
                             <div className="card-body">
                                 <Link to={`/${w?.name}/${w?._id}`}><h2 className="card-title hover:underline">{w.name}</h2></Link>
                                 <div className="grid gap-2 text-gray-500 my-4">
-                                    <li>{w.display}</li>
-                                    <li>{w.processor}</li>
-                                    <li>{w.features}</li>
-                                    <li>{w.extrafeatures}</li>
+                                    <li>{w.displaytype}</li>
+                                    <li>{w.chipset}</li>
+                                    <li>{w.sensor}</li>
+                                    <li>{w.iprating}</li>
                                 </div>
                                 <hr/>
                                 <div className="text-center text-xl font-semibold text-red-600 my-4">
