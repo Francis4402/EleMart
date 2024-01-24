@@ -69,16 +69,16 @@ const ProductDetails = () => {
                                 <ul className="grid gap-2">
                                     <li>{modelname}</li>
                                     {
-                                        displaytype === 'N' ? <li>{feature1}</li> : <li>{displaytype}</li>
+                                        displaytype === '' ? <li>{feature1}</li> : <li>{displaytype}</li>
                                     }
                                     {
-                                        chipset === 'N' ? <li>{feature2}</li> : <li>{chipset}</li>
+                                        chipset === '' ? <li>{feature2}</li> : <li>{chipset}</li>
                                     }
                                     {
-                                        sensor === 'N' ? <li>{feature3}</li> : <li>{sensor}</li>
+                                        sensor === '' ? <li>{feature3}</li> : <li>{sensor}</li>
                                     }
                                     {
-                                        iprating === 'N' ? <li>{feature4}</li> : <li>{iprating}</li>
+                                        iprating === '' ? <li>{feature4}</li> : <li>{iprating}</li>
                                     }
 
                                 </ul>

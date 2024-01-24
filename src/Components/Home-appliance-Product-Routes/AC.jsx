@@ -28,22 +28,18 @@ const Ac = () => {
 
                 <div className="navbar">
                     <div className="navbar-center">
-                        {
-                            Brands.length > 1 && (
-                                <Link to="/home-appliances/ac">
-                                    <ul className="menu menu-horizontal px-1 font-semibold">
-                                        <li className="bg-gray-200 rounded-lg">
-                                            <a>All</a>
-                                        </li>
-                                    </ul>
-                                </Link>
-                            )
-                        }
+                        <Link to="/home-appliances/ac">
+                            <ul className="menu menu-horizontal px-1 font-semibold">
+                                <li className="bg-gray-200 rounded-lg shadow-lg">
+                                    <a>All</a>
+                                </li>
+                            </ul>
+                        </Link>
                         {
                             Brands.map(b => <div key={b?.id}>
                                 <Link to={`${b.title.toLowerCase()}`}>
                                     <ul className="menu menu-horizontal px-1 font-semibold">
-                                        <li className="bg-gray-200 rounded-lg"><a>{b.title}</a></li>
+                                        <li className="bg-gray-200 rounded-lg shadow-lg"><a>{b.title}</a></li>
                                     </ul>
                                 </Link>
                             </div>)

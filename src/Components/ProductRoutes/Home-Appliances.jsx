@@ -19,10 +19,6 @@ const HomeAppliances = () => {
             id: 4,
             title: 'Air-Fryer',
         },
-        {
-            id: 5,
-            title: 'Washing-Machine'
-        }
     ]
 
     return (
@@ -33,22 +29,18 @@ const HomeAppliances = () => {
 
                 <div className="navbar">
                     <div className="navbar-center">
-                        {
-                            Products.length > 1 && (
-                                <Link to="/home-appliances">
-                                    <ul className="menu menu-horizontal px-1 font-semibold">
-                                        <li className="bg-gray-200 rounded-lg">
-                                            <a>All</a>
-                                        </li>
-                                    </ul>
-                                </Link>
-                            )
-                        }
+                        <Link to="/home-appliances">
+                            <ul className="menu menu-horizontal px-1 font-semibold">
+                                <li className="bg-gray-200 rounded-lg shadow-lg">
+                                    <a>All</a>
+                                </li>
+                            </ul>
+                        </Link>
                         {
                             Products.map(b => <div key={b?.id}>
                                 <Link to={`${b.title.toLowerCase()}`}>
                                     <ul className="menu menu-horizontal px-1 font-semibold">
-                                        <li className="bg-gray-200 rounded-lg"><a>{b.title}</a></li>
+                                        <li className="bg-gray-200 rounded-lg shadow-lg"><a>{b.title}</a></li>
                                     </ul>
                                 </Link>
                             </div>)

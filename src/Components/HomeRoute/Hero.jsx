@@ -1,10 +1,9 @@
 import {FaSearch} from "react-icons/fa";
 import { LuMicrowave } from "react-icons/lu";
-import { IoWatchOutline, IoGameControllerOutline, IoPrintOutline   } from "react-icons/io5";
-import { GiDeliveryDrone, GiPowerGenerator } from "react-icons/gi";
-import { PiBatteryChargingVertical, PiTelevisionSimpleThin, PiHeadphones } from "react-icons/pi";
+import { IoWatchOutline, IoGameControllerOutline  } from "react-icons/io5";
+import { GiDeliveryDrone } from "react-icons/gi";
+import { PiHeadphones } from "react-icons/pi";
 import { CiMobile3 } from "react-icons/ci";
-import { RxCamera } from "react-icons/rx";
 import {motion} from "framer-motion";
 import {Link} from "react-router-dom";
 
@@ -32,29 +31,9 @@ const Hero = () => {
             icon: <GiDeliveryDrone size={80}/>
         },
         {
-            name: "Portable-Power-Station",
-            icon: <GiPowerGenerator size={80}/>
-        },
-        {
-            name: "Battery",
-            icon: <PiBatteryChargingVertical size={80}/>
-        },
-        {
-            name: "TV",
-            icon: <PiTelevisionSimpleThin size={80}/>
-        },
-        {
             name: "Game-Console",
             icon: <IoGameControllerOutline size={80}/>
         },
-        {
-            name: "Action-Camera",
-            icon: <RxCamera size={80}/>
-        },
-        {
-            name: "Printer",
-            icon: <IoPrintOutline size={80}/>
-        }
     ]
 
     return (

@@ -18,10 +18,10 @@ const WWalton = () => {
                             <div className="card-body">
                                 <Link to={`/${w?.name}/${w?._id}`}><h2 className="card-title hover:underline">{w.name}</h2></Link>
                                 <div className="grid gap-2 text-gray-500 my-4">
-                                    <li>{w.displaytype}</li>
-                                    <li>{w.chipset}</li>
-                                    <li>{w.sensor}</li>
-                                    <li>{w.iprating}</li>
+                                    {w.displaytype === '' ? '' : <li>{w.displaytype}</li>}
+                                    {w.chipset === '' ? '' : <li>{w.chipset}</li>}
+                                    {w.sensor === '' ? '' : <li>{w.sensor}</li>}
+                                    {w.iprating === '' ? '' : <li>{w.iprating}</li>}
                                 </div>
                                 <hr/>
                                 <div className="text-center text-xl font-semibold text-red-600 my-4">

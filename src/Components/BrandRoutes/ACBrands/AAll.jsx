@@ -11,11 +11,20 @@ const AAll = () => {
 
     const AC = products.filter(phone => phone.category === 'ac')
 
-    const randomizedAC = AC.sort(getRandomorder);
+    const randomizeddata = AC.sort(getRandomorder);
 
     const axiosPublic = useAxiosPublic();
-    const handleAddtoCart = () => {
-        axiosPublic.post('/cart')
+    const handleAddtoCart = (productId) => {
+
+        const { name, image, price, modelname } = products.find(product => product._id === productId);
+
+        const payload = {
+            name: name,
+            image: image,
+            price: price,
+            modelname: modelname,
+        };
+        axiosPublic.post('/cart', payload)
             .then((res) => {
                 if(res.data.insertedId){
                     Swal.fire({
@@ -33,17 +42,17 @@ const AAll = () => {
             <hr/>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 my-4'>
                 {
-                    randomizedAC.map(w => <div key={w?.id}>
+                    randomizeddata.map(w => <div key={w?.id}>
                         <div className="card w-full h-fit bg-base-100 shadow-xl">
                             <figure><Link to={`/${w?.name}/${w?._id}`}><img src={w.image} width={250} height={100} alt="i" /></Link></figure>
                             <div className="card-body">
                                 <Link to={`/${w?.name}/${w?._id}`}><h2 className="card-title hover:underline">{w.name}</h2></Link>
                                 <div className="grid gap-2 text-gray-500 my-4">
-                                    <li>{w.modelname}</li>
-                                    <li>{w.feature1}</li>
-                                    <li>{w.feature2}</li>
-                                    <li>{w.feature3}</li>
-                                    <li>{w.feature4}</li>
+                                    {w.modelname === '' ? '' : <li>{w.modelname}</li>}
+                                    {w.feature1 === '' ? '' : <li>{w.feature1}</li>}
+                                    {w.feature2 === '' ? '' : <li>{w.feature2}</li>}
+                                    {w.feature3 === '' ? '' : <li>{w.feature3}</li>}
+                                    {w.feature4 === '' ? '' : <li>{w.feature4}</li>}
                                 </div>
                                 <hr/>
                                 <div className="text-center text-xl font-semibold text-red-600 my-4">

@@ -1,21 +1,28 @@
+import React from 'react';
 import useAxiosPublic from "../../Axiosfiles/useAxiosPublic.jsx";
-import Swal from "sweetalert2";
 import useCategory from "../../Hooks/useCategory.jsx";
+import Swal from "sweetalert2";
 import {Link} from "react-router-dom";
 import {FaCartPlus} from "react-icons/fa";
 
-const MAll = () => {
-
-    const getRandomorder = () => Math.random() - 0.5;
-    const [products] = useCategory();
-
-    const smartphone = products.filter(data => data.category === 'mobiles')
-
-    const randomizedSmartphone = smartphone.sort(getRandomorder);
+const Xbox = () => {
 
     const axiosPublic = useAxiosPublic();
-    const handleAddtoCart = () => {
-        axiosPublic.post('/cart')
+    const [products] = useCategory();
+
+    const data = products.filter(data => data.category === 'gameconsole' && data.brands === 'xbox');
+
+    const handleAddtoCart = (xboxid) => {
+
+        const { name, image, price, modelname } = products.find(product => product._id === xboxid);
+
+        const payload = {
+            name: name,
+            image: image,
+            price: price,
+            modelname: modelname,
+        };
+        axiosPublic.post('/cart', payload)
             .then((res) => {
                 if(res.data.insertedId){
                     Swal.fire({
@@ -33,16 +40,17 @@ const MAll = () => {
             <hr/>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 my-4'>
                 {
-                    randomizedSmartphone.map(w => <div key={w?.id}>
+                    data.map(w => <div key={w?.id}>
                         <div className="card w-full h-fit bg-base-100 shadow-xl">
                             <figure><Link to={`/${w?.name}/${w?._id}`}><img src={w.image} width={250} height={100} alt="i" /></Link></figure>
                             <div className="card-body">
                                 <Link to={`/${w?.name}/${w?._id}`}><h2 className="card-title hover:underline">{w.name}</h2></Link>
                                 <div className="grid gap-2 text-gray-500 my-4">
-                                    {w.displaytype === '' ? '' : <li>{w.displaytype}</li>}
-                                    {w.chipset === '' ? '' : <li>{w.chipset}</li>}
-                                    {w.sensor === '' ? '' : <li>{w.sensor}</li>}
-                                    {w.iprating === '' ? '' : <li>{w.iprating}</li>}
+                                    {w.modelname === '' ? '' : <li>{w.modelname}</li>}
+                                    {w.feature1 === '' ? '' : <li>{w.feature1}</li>}
+                                    {w.feature2 === '' ? '' : <li>{w.feature2}</li>}
+                                    {w.feature3 === '' ? '' : <li>{w.feature3}</li>}
+                                    {w.feature4 === '' ? '' : <li>{w.feature4}</li>}
                                 </div>
                                 <hr/>
                                 <div className="text-center text-xl font-semibold text-red-600 my-4">
@@ -58,4 +66,4 @@ const MAll = () => {
     );
 };
 
-export default MAll;
+export default Xbox;

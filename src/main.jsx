@@ -60,10 +60,19 @@ import AirXiaomi from "./Components/BrandRoutes/AirFryerBrands/AirXiaomi.jsx";
 import GAll from "./Components/BrandRoutes/GeyserBrands/GAll.jsx";
 import GMidea from "./Components/BrandRoutes/GeyserBrands/GMidea.jsx";
 import GTropica from "./Components/BrandRoutes/GeyserBrands/GTropica.jsx";
-import OAll from "./Components/BrandRoutes/OvenBrands/OAll.jsx";
 import OWalton from "./Components/BrandRoutes/OvenBrands/OWalton.jsx";
-import WashAll from "./Components/BrandRoutes/Washing-Machine/WashAll.jsx";
-import WHaier from "./Components/BrandRoutes/Washing-Machine/WHaier.jsx";
+import OAll from "./Components/BrandRoutes/OvenBrands/OAll.jsx";
+import HeadphonesAll from "./Components/BrandRoutes/HeadphonesBrands/HeadphonesAll.jsx";
+import HeadphoneApple from "./Components/BrandRoutes/HeadphonesBrands/HeadphoneApple.jsx";
+import HeadphonesGamdias from "./Components/BrandRoutes/HeadphonesBrands/HeadphonesGamdias.jsx";
+import HeadphonesRazer from "./Components/BrandRoutes/HeadphonesBrands/HeadphonesRazer.jsx";
+import HeadphonesLogitech from "./Components/BrandRoutes/HeadphonesBrands/HeadphonesLogitech.jsx";
+import Dji from "./Components/BrandRoutes/Drones/DJI.jsx";
+import MiniToyDrone from "./Components/BrandRoutes/Drones/MiniToyDrone.jsx";
+import DroneAll from "./Components/BrandRoutes/Drones/DroneAll.jsx";
+import GameConsoleAll from "./Components/BrandRoutes/GameConsoleBrands/GameConsoleAll.jsx";
+import Xbox from "./Components/BrandRoutes/GameConsoleBrands/Xbox.jsx";
+import Playstation from "./Components/BrandRoutes/GameConsoleBrands/Playstation.jsx";
 
 const queryClient = new QueryClient();
 
@@ -164,20 +173,6 @@ const routes = createBrowserRouter([
               }
             ]
           },
-          {
-            path: 'washing-machine',
-            element: <WashingMachine/>,
-            children: [
-              {
-                path: '',
-                element: <WashAll/>
-              },
-              {
-                path: 'haier',
-                element: <WHaier/>
-              }
-            ]
-          }
         ]
       },
       {
@@ -242,11 +237,47 @@ const routes = createBrowserRouter([
       },
       {
         path: '/headphone',
-        element: <Headphones/>
+        element: <Headphones/>,
+        children: [
+          {
+            path: '',
+            element: <HeadphonesAll/>
+          },
+          {
+            path: 'apple',
+            element: <HeadphoneApple/>
+          },
+          {
+            path: 'gamdias',
+            element: <HeadphonesGamdias/>
+          },
+          {
+            path: 'razer',
+            element: <HeadphonesRazer/>
+          },
+          {
+            path: 'logitech',
+            element: <HeadphonesLogitech/>
+          }
+        ]
       },
       {
         path: '/drone',
-        element: <Drone/>
+        element: <Drone/>,
+        children: [
+          {
+            path: '',
+            element: <DroneAll/>
+          },
+          {
+            path: 'dji',
+            element: <Dji/>
+          },
+          {
+            path: 'Mini-Toy-Drone',
+            element: <MiniToyDrone/>
+          }
+        ]
       },
       {
         path: '/portable-power-station',
@@ -262,7 +293,21 @@ const routes = createBrowserRouter([
       },
       {
         path: '/game-console',
-        element: <GameConsole/>
+        element: <GameConsole/>,
+        children: [
+          {
+            path: '',
+            element: <GameConsoleAll/>
+          },
+          {
+            path: 'xbox',
+            element: <Xbox/>
+          },
+          {
+            path: 'playstation',
+            element: <Playstation/>
+          }
+        ]
       },
       {
         path: '/action-camera',
