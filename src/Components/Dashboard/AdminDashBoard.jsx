@@ -1,6 +1,5 @@
 import {FaArrowRight, FaBars, FaHome} from "react-icons/fa";
-import {MdOutlineAddCircle, MdOutlineFeaturedPlayList} from "react-icons/md";
-import {GrChapterAdd} from "react-icons/gr";
+import {MdOutlineAddCircle} from "react-icons/md";
 import {Link, Outlet} from "react-router-dom";
 import {useState} from "react";
 import {FaPeopleGroup} from "react-icons/fa6";
@@ -60,19 +59,6 @@ const AdminDashBoard = () => {
                                 </div>
                             </Link>
 
-                            <Link to="updateproducts">
-                                <div className="flex items-center gap-6 hover:bg-blue-950 duration-200 ease-in-out delay-100 p-3 rounded">
-                                    <GrChapterAdd size={30} />
-                                    <h1>Update Products</h1>
-                                </div>
-                            </Link>
-
-                            <Link to="featuredproducts">
-                                <div className="flex items-center gap-6 hover:bg-blue-950 duration-200 ease-in-out delay-100 p-3 rounded">
-                                    <MdOutlineFeaturedPlayList size={30} />
-                                    <h1>Featured Products</h1>
-                                </div>
-                            </Link>
 
                             <Link to="allusers">
                                 <div className="flex items-center gap-6 hover:bg-blue-950 duration-200 ease-in-out delay-100 p-3 rounded">

@@ -9,7 +9,7 @@ const image_hosting_key = import.meta.env.VITE_Image_Upload_token;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const AddProduct = () => {
 
-    const [category, setCategory] = useState('');
+    const [categories, setCategory] = useState('');
     const [, setbrands] = useState('');
     const axiosPublic = useAxiosPublic();
     const {register, handleSubmit, reset, formState: {errors}} = useForm();
@@ -25,7 +25,8 @@ const AddProduct = () => {
             const productsdata = {
                 name: data.name,
                 image: res.data.data.display_url,
-                price: data.price,
+                price: parseInt(data.price, 10),
+                priceDiscount: parseInt(data.priceDiscount, 10),
                 modelname: data.modelname,
                 size: data.size,
                 displaytype: data.displaytype,
@@ -64,7 +65,6 @@ const AddProduct = () => {
                 colors: data.colors,
                 warranty: data.warranty,
                 installationspolicy: data.installationspolicy,
-                batterydescriptiontitle: data.batterydescriptiontitle,
                 actype: data.actype,
                 technology: data.technology,
                 capacity: data.capacity,
@@ -81,7 +81,7 @@ const AddProduct = () => {
                 acweight: data.acweight,
                 drivermagnet: data.drivermagnet,
                 impedance: data.impedance,
-                hadphonesensitivity: data.hadphonesensitivity,
+                headphonesensitivity: data.headphonesensitivity,
                 inputjack: data.inputjack,
                 driverdiameter: data.driverdiameter,
                 connectivity: data.connectivity,
@@ -114,8 +114,9 @@ const AddProduct = () => {
                 description5: data.description5,
                 description6: data.description6,
                 description7: data.description7,
-                category: data.category,
+                categories: data.categories,
                 brands: data.brands,
+                featured: data.featured,
             }
             const AddProducts = await axiosPublic.post('/addproduct', productsdata);
             if(AddProducts.data.insertedId){
@@ -174,7 +175,7 @@ const AddProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Category</span>
                                         </label>
-                                        <select {...register('category', {required: true})} className="p-3 rounded-md bg-base-300" onChange={handleChange}>
+                                        <select {...register('categories', {required: true})} className="p-3 rounded-md bg-base-300" onChange={handleChange}>
                                             <option value="">Select Category</option>
                                             <option value="smartwatch">Smart Watch</option>
                                             <option value="mobiles">Mobiles</option>
@@ -195,7 +196,7 @@ const AddProduct = () => {
                                         </label>
                                         <select {...register('brands', {required: true})} className="p-3 rounded-md bg-base-300" onChange={handleBrands}>
                                             <option value="">Select brands</option>
-                                            {category === "smartwatch" && (
+                                            {categories === "smartwatch" && (
                                                 <>
                                                     <option value="apple">Apple</option>
                                                     <option value="google">Google</option>
@@ -206,7 +207,7 @@ const AddProduct = () => {
                                             )}
 
                                             {
-                                                category === "mobiles" && (
+                                                categories === "mobiles" && (
                                                     <>
                                                         <option value="apple">Apple</option>
                                                         <option value="google">Google</option>
@@ -218,7 +219,7 @@ const AddProduct = () => {
                                             }
 
                                             {
-                                                category === 'ac' && (
+                                                categories === 'ac' && (
                                                     <>
                                                         <option value="samsung">Samsung</option>
                                                         <option value="gree">Gree</option>
@@ -229,7 +230,7 @@ const AddProduct = () => {
                                             }
 
                                             {
-                                                category === 'geyser' && (
+                                                categories === 'geyser' && (
                                                     <>
                                                         <option value="midea">Midea</option>
                                                         <option value="tropica">Tropica</option>
@@ -238,7 +239,7 @@ const AddProduct = () => {
                                             }
 
                                             {
-                                                category === 'oven' && (
+                                                categories === 'oven' && (
                                                     <>
                                                         <option value="walton">Walton</option>
                                                     </>
@@ -246,7 +247,7 @@ const AddProduct = () => {
                                             }
 
                                             {
-                                                category === 'airfryer' && (
+                                                categories === 'airfryer' && (
                                                     <>
                                                         <option value="xiaomi">Xiaomi</option>
                                                     </>
@@ -254,7 +255,7 @@ const AddProduct = () => {
                                             }
 
                                             {
-                                                category === 'washingmachine' && (
+                                                categories === 'washingmachine' && (
                                                     <>
                                                         <option value="haier">Haier</option>
                                                     </>
@@ -262,7 +263,7 @@ const AddProduct = () => {
                                             }
 
                                             {
-                                                category === 'headphones' && (
+                                                categories === 'headphones' && (
                                                     <>
                                                         <option value="apple">Apple</option>
                                                         <option value="gamdias">GAMDIAS</option>
@@ -273,7 +274,7 @@ const AddProduct = () => {
                                             }
 
                                             {
-                                                category === 'drone' && (
+                                                categories === 'drone' && (
                                                     <>
                                                         <option value="dji">DJI</option>
                                                         <option value="minitoydrone">Mini Toy Drone</option>
@@ -282,7 +283,7 @@ const AddProduct = () => {
                                             }
 
                                             {
-                                                category === 'gameconsole' && (
+                                                categories === 'gameconsole' && (
                                                     <>
                                                         <option value="xbox">Xbox</option>
                                                         <option value="playstation">PlayStation</option>
@@ -298,7 +299,7 @@ const AddProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Product Price</span>
                                         </label>
-                                        <input type="text" {...register('price', {required: true})} placeholder="Price" className="input input-bordered w-full max-w-xl" />
+                                        <input type="number" {...register('price', {required: true})} placeholder="Price" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
@@ -307,6 +308,29 @@ const AddProduct = () => {
                                         </label>
                                         <input type="text" {...register('modelname', {required: true})} placeholder="Model Name" className="input input-bordered w-full max-w-xl" />
                                     </div>
+                                </div>
+
+                                <div className="grid lg:grid-cols-2 gap-4">
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Price Discount</span>
+                                        </label>
+                                        <input type="number" {...register('priceDiscount', {required: true})} placeholder="Price Discount" className="input input-bordered w-full max-w-xl" />
+                                    </div>
+
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Featured</span>
+                                        </label>
+
+                                        <select {...register('featured', {required: true})} className="p-3 rounded-md bg-base-300">
+                                            <option value="">Select Yes or no</option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                    </div>
+
+
                                 </div>
 
                                 <div className="my-2">
@@ -846,7 +870,7 @@ const AddProduct = () => {
                                     <label className="label">
                                         <span className="label-text">Sensitivity</span>
                                     </label>
-                                    <input type="text" {...register('hadphonesensitivity')} placeholder="Sensitivity" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" {...register('headphonesensitivity')} placeholder="Sensitivity" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">

@@ -7,7 +7,7 @@ import useAxiosPublic from "../Axiosfiles/useAxiosPublic.jsx";
 import Swal from "sweetalert2";
 const ProductDetails = () => {
 
-    const {_id, name, image, price, modelname, displaytype, chipset, sensor, iprating, feature1, feature2, feature3, feature4} = useLoaderData();
+    const {_id, name, image, price, priceDiscount, modelname, displaytype, chipset, sensor, iprating, feature1, feature2, feature3, feature4} = useLoaderData();
 
     const [number, setNumber] = useState(1);
 
@@ -93,7 +93,11 @@ const ProductDetails = () => {
                                             </div>
 
                                             <div className="grid">
-                                                <h1 className="text-xl font-semibold">{price} tk</h1>
+                                                <div className="flex gap-4">
+                                                    <h1 className="text-xl font-semibold">{priceDiscount} tk</h1>
+                                                    <h1 className="text-xl font-semibold line-through">{price} tk</h1>
+                                                </div>
+
                                                 <p className="text-xs">Cash Discount Price</p>
                                                 <p className="text-gray-400 text-xs">Online / Cash Payment</p>
                                             </div>

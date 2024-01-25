@@ -2,7 +2,7 @@ import {useLoaderData} from "react-router-dom";
 
 const Specification = () => {
 
-    const {size, displaytype, chipset, resolution, brightness, displayfeatures, cputype, gpu, ram, internalstorage, cardslot, rcamresolution, rcamfeatures, rvideorecording, fcamresolution, fcamfeatures, fcamvideorecording, speaker, audiofeatures, sim, wifi, bluetooth, gps, nfc, audiojack, operatingsystem, sensor, iprating, otherfeatures, batterytype, charging, dimension, weight, materials, colors, actype, technology, capacity, coverage, energysavingrating, capacityofcooling, noiselevel, compressortype, condenser, refrigeranttype, others, powertype, powerconsumption, acweight, drivermagnet, impedance, hadphonesensitivity, inputjack, driverdiameter, connectivity, headphonesdimensions, headphonesweight, headphonescolor, headphonescablelength, microphoneSize, microphonesensitivity, microphonepickup, warranty, installationspolicy} = useLoaderData();
+    const {size, displaytype, chipset, resolution, brightness, displayfeatures, cputype, gpu, ram, internalstorage, cardslot, rcamresolution, rcamfeatures, rvideorecording, fcamresolution, fcamfeatures, fcamvideorecording, speaker, audiofeatures, sim, wifi, bluetooth, gps, nfc, audiojack, operatingsystem, sensor, iprating, otherfeatures, batterytype, charging, dimension, weight, materials, colors, actype, technology, capacity, coverage, energysavingrating, capacityofcooling, noiselevel, compressortype, condenser, refrigeranttype, others, powertype, powerconsumption, acweight, drivermagnet, impedance, headphonesensitivity, inputjack, driverdiameter, connectivity, headphonesdimensions, headphonesweight, headphonescolor, headphonescablelength, microphoneSize, microphonesensitivity, microphonepickup, warranty, installationspolicy} = useLoaderData();
 
     return (
         <div className="my-6">
@@ -421,9 +421,9 @@ const Specification = () => {
                 }
 
                 {
-                    hadphonesensitivity === '' ? '' : <div className="p-2 border-b">
+                    headphonesensitivity === '' ? '' : <div className="p-2 border-b">
                         <p className="text-gray-400">Headphone Sensitivity</p>
-                        <p className="mb-2">{hadphonesensitivity}</p>
+                        <p className="mb-2">{headphonesensitivity}</p>
                     </div>
                 }
 

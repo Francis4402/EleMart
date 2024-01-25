@@ -1,11 +1,65 @@
 import useCategory from "../../Hooks/useCategory.jsx";
 import {Link} from "react-router-dom";
-import {FaCartPlus} from "react-icons/fa";
+import {FaCartPlus, FaTrash} from "react-icons/fa";
+import {MdOutlineSystemUpdateAlt} from "react-icons/md";
+import useAxiosPublic from "../../Axiosfiles/useAxiosPublic.jsx";
+import Swal from "sweetalert2";
+import React from "react";
 
 const MVivo = () => {
+    const axiosPublic = useAxiosPublic();
+    const [products,refetch] = useCategory();
+    const vivophone = products.filter(b => b.categories === 'mobiles' && b.brands === 'vivo');
 
-    const [products] = useCategory();
-    const vivophone = products.filter(b => b.category === 'mobiles' && b.brands === 'vivo');
+    const handleAddtoCart = (googleid) => {
+
+        const { name, image, price, modelname } = products.find(product => product._id === googleid);
+
+        const payload = {
+            name: name,
+            image: image,
+            price: price,
+            modelname: modelname,
+        };
+        axiosPublic.post('/cart', payload)
+            .then((res) => {
+                if(res.data.insertedId){
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Product Added to Cart',
+                        icon: 'success',
+                        confirmButtonText: 'ok'
+                    })
+                }
+            })
+    }
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to remove this product",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        })
+            .then(res => {
+                if(res.isConfirmed){
+                    axiosPublic.delete(`/addproduct/${id}`)
+                        .then(res => {
+                            if(res.data.deletedCount > 0){
+                                refetch();
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Product Remove.",
+                                    icon: "success"
+                                });
+                            }
+                        })
+                }
+            })
+    }
 
     return (
         <div>
@@ -18,6 +72,11 @@ const MVivo = () => {
                             <div className="card-body">
                                 <Link to={`/${w?.name}/${w?._id}`}><h2 className="card-title hover:underline">{w.name}</h2></Link>
                                 <div className="grid gap-2 text-gray-500 my-4">
+                                    {w.modelname === '' ? '' : <li>{w.modelname}</li>}
+                                    {w.feature1 === '' ? '' : <li>{w.feature1}</li>}
+                                    {w.feature2 === '' ? '' : <li>{w.feature2}</li>}
+                                    {w.feature3 === '' ? '' : <li>{w.feature3}</li>}
+                                    {w.feature4 === '' ? '' : <li>{w.feature4}</li>}
                                     {w.displaytype === '' ? '' : <li>{w.displaytype}</li>}
                                     {w.chipset === '' ? '' : <li>{w.chipset}</li>}
                                     {w.sensor === '' ? '' : <li>{w.sensor}</li>}
@@ -28,7 +87,11 @@ const MVivo = () => {
                                     <h2>{w.price} tk</h2>
                                 </div>
 
-                                <button className="btn btn-neutral"><FaCartPlus/>Buy Now</button>
+                                <button onClick={() => {handleAddtoCart(w?._id)}} className="btn btn-neutral"><FaCartPlus/>Buy Now</button>
+                                <div className="flex justify-between">
+                                    <Link to={`/admindashboard/updateproducts/${w?._id}`}><button className="btn btn-neutral"><MdOutlineSystemUpdateAlt/>Update</button></Link>
+                                    <button onClick={() => handleDelete(w?._id)} className="btn btn-neutral"><FaTrash/>Delete</button>
+                                </div>
                             </div>
                         </div>
                     </div>)

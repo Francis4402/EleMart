@@ -13,7 +13,6 @@ import PrivateRoute2 from "./Components/PrivateRoutes/PrivateRoute2.jsx";
 import AdminDashBoard from "./Components/Dashboard/AdminDashBoard.jsx";
 import AddProduct from "./Components/Dashboard/AddProduct.jsx";
 import UpdateProduct from "./Components/Dashboard/UpdateProduct.jsx";
-import FeaturedProduct from "./Components/Dashboard/FeaturedProduct.jsx";
 import AllUsers from "./Components/Dashboard/AllUsers.jsx";
 import PrivateRoute from "./Components/PrivateRoutes/PrivateRoute.jsx";
 import Mobiles from "./Components/ProductRoutes/Mobiles.jsx";
@@ -345,7 +344,7 @@ const routes = createBrowserRouter([
     ]
   },
   {
-    path: 'admindashboard',
+    path: '/admindashboard',
     element: <PrivateRoute><AdminDashBoard/></PrivateRoute>,
     children: [
       {
@@ -353,12 +352,9 @@ const routes = createBrowserRouter([
         element: <AddProduct />
       },
       {
-        path: 'updateproducts',
-        element: <UpdateProduct/>
-      },
-      {
-        path: 'featuredproducts',
-        element: <FeaturedProduct/>
+        path: 'updateproducts/:id',
+        element: <UpdateProduct/>,
+        loader: async ({params}) => await fetch(`http://localhost:3000/addproduct/${params.id}`)
       },
       {
         path: 'allusers',

@@ -2,14 +2,16 @@ import useCategory from "../../Hooks/useCategory.jsx";
 import useAxiosPublic from "../../Axiosfiles/useAxiosPublic.jsx";
 import Swal from "sweetalert2";
 import {Link} from "react-router-dom";
-import {FaCartPlus} from "react-icons/fa";
+import {FaCartPlus, FaTrash} from "react-icons/fa";
+import {MdOutlineSystemUpdateAlt} from "react-icons/md";
+import React from "react";
 
 const AAll = () => {
 
     const getRandomorder = () => Math.random() - 0.5;
-    const [products] = useCategory();
+    const [products,refetch] = useCategory();
 
-    const AC = products.filter(phone => phone.category === 'ac')
+    const AC = products.filter(phone => phone.categories === 'ac')
 
     const randomizeddata = AC.sort(getRandomorder);
 
@@ -37,6 +39,33 @@ const AAll = () => {
             })
     }
 
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to remove this product",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        })
+            .then(res => {
+                if(res.isConfirmed){
+                    axiosPublic.delete(`/addproduct/${id}`)
+                        .then(res => {
+                            if(res.data.deletedCount > 0){
+                                refetch();
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Product Remove.",
+                                    icon: "success"
+                                });
+                            }
+                        })
+                }
+            })
+    }
+
     return (
         <div>
             <hr/>
@@ -53,12 +82,20 @@ const AAll = () => {
                                     {w.feature2 === '' ? '' : <li>{w.feature2}</li>}
                                     {w.feature3 === '' ? '' : <li>{w.feature3}</li>}
                                     {w.feature4 === '' ? '' : <li>{w.feature4}</li>}
+                                    {w.displaytype === '' ? '' : <li>{w.displaytype}</li>}
+                                    {w.chipset === '' ? '' : <li>{w.chipset}</li>}
+                                    {w.sensor === '' ? '' : <li>{w.sensor}</li>}
+                                    {w.iprating === '' ? '' : <li>{w.iprating}</li>}
                                 </div>
                                 <hr/>
                                 <div className="text-center text-xl font-semibold text-red-600 my-4">
                                     <h2>{w.price} tk</h2>
                                 </div>
                                 <button onClick={() => {handleAddtoCart(w?._id)}} className="btn btn-neutral"><FaCartPlus/>Buy Now</button>
+                                <div className="flex justify-between">
+                                    <Link to={`/admindashboard/updateproducts/${w?._id}`}><button className="btn btn-neutral"><MdOutlineSystemUpdateAlt/>Update</button></Link>
+                                    <button onClick={() => handleDelete(w?._id)} className="btn btn-neutral"><FaTrash/>Delete</button>
+                                </div>
                             </div>
                         </div>
                     </div>)
