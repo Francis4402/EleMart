@@ -329,8 +329,6 @@ const AddProduct = () => {
                                             <option value="no">No</option>
                                         </select>
                                     </div>
-
-
                                 </div>
 
                                 <div className="my-2">

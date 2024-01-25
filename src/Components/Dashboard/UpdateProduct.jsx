@@ -118,6 +118,7 @@ const UpdateProduct = () => {
                 description7: data.description7,
                 categories: data.categories,
                 brands: data.brands,
+                featured: data.featured,
             }
             await axiosPublic.put(`/addproduct/${_id}`, productsdata)
                 .then(res => {
@@ -301,6 +302,27 @@ const UpdateProduct = () => {
                                             <span className="label-text">Model Name</span>
                                         </label>
                                         <input type="text" {...register('modelname', {required: true})} defaultValue={modelname} placeholder="Model Name" className="input input-bordered w-full max-w-xl" />
+                                    </div>
+                                </div>
+
+                                <div className="grid lg:grid-cols-2 gap-4">
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Price Discount</span>
+                                        </label>
+                                        <input type="number" {...register('priceDiscount', {required: true})} placeholder="Price Discount" className="input input-bordered w-full max-w-xl" />
+                                    </div>
+
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Featured</span>
+                                        </label>
+
+                                        <select {...register('featured', {required: true})} className="p-3 rounded-md bg-base-300">
+                                            <option value="">Select Yes or no</option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
                                     </div>
                                 </div>
 
