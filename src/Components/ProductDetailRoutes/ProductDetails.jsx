@@ -5,8 +5,10 @@ import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
 import useAxiosPublic from "../Axiosfiles/useAxiosPublic.jsx";
 import Swal from "sweetalert2";
+import UseAuth from "../Hooks/useAuth.jsx";
 const ProductDetails = () => {
 
+    const {user} = UseAuth();
     const {_id, name, image, price, priceDiscount, modelname, displaytype, chipset, sensor, iprating, feature1, feature2, feature3, feature4} = useLoaderData();
 
     const [number, setNumber] = useState(1);
@@ -25,6 +27,7 @@ const ProductDetails = () => {
     const handleAddtoCart = () => {
         const payload = {
             name: name,
+            email: user?.email,
             image: image,
             price: price,
             modelname: modelname,

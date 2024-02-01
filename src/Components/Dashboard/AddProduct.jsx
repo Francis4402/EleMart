@@ -12,7 +12,7 @@ const AddProduct = () => {
     const [categories, setCategory] = useState('');
     const [, setbrands] = useState('');
     const axiosPublic = useAxiosPublic();
-    const {register, handleSubmit, reset, formState: {errors}} = useForm();
+    const {register, handleSubmit, reset} = useForm();
 
     const onSubmit = async (data) => {
         const imageFile = {image: data.image[0]}
@@ -301,21 +301,21 @@ const AddProduct = () => {
                                         </label>
                                         <input type="number" {...register('price', {required: true})} placeholder="Price" className="input input-bordered w-full max-w-xl" />
                                     </div>
-
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text">Model Name</span>
-                                        </label>
-                                        <input type="text" {...register('modelname', {required: true})} placeholder="Model Name" className="input input-bordered w-full max-w-xl" />
-                                    </div>
-                                </div>
-
-                                <div className="grid lg:grid-cols-2 gap-4">
+                                    
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Price Discount</span>
                                         </label>
                                         <input type="number" {...register('priceDiscount', {required: true})} placeholder="Price Discount" className="input input-bordered w-full max-w-xl" />
+                                    </div>
+                                </div>
+
+                                <div className="grid lg:grid-cols-2 gap-4">
+                                <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Model Name</span>
+                                        </label>
+                                        <input type="text" {...register('modelname', {required: true})} placeholder="Model Name" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">

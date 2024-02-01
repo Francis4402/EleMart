@@ -30,7 +30,8 @@ const SignUp = () => {
                             name: data.name,
                             email: data.email,
                             password: data.password,
-                            image: res.data.data.display_url
+                            image: res.data.data.display_url,
+                            role: res.user?.role || '',
                         }
                         axiosPublic.post('/users', userInfo)
                             .then(res => {

@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import {Link} from "react-router-dom";
 import {FaCartPlus, FaTrash} from "react-icons/fa";
 import {MdOutlineSystemUpdateAlt} from "react-icons/md";
-import React from "react";
+
 
 const AAll = () => {
 
@@ -16,6 +16,7 @@ const AAll = () => {
     const randomizeddata = AC.sort(getRandomorder);
 
     const axiosPublic = useAxiosPublic();
+    
     const handleAddtoCart = (productId) => {
 
         const { name, image, price, modelname } = products.find(product => product._id === productId);

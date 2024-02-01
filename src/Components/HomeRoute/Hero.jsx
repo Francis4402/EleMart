@@ -10,41 +10,19 @@ import useAxiosPublic from "../Axiosfiles/useAxiosPublic.jsx";
 import useCategory from "../Hooks/useCategory.jsx";
 import Swal from "sweetalert2";
 import {MdOutlineSystemUpdateAlt} from "react-icons/md";
-import React from "react";
+import useAdmin from "../Hooks/useAdmin.jsx";
+
 
 const Hero = () => {
 
+    const [isAdmin] = useAdmin();
     const axiosPublic = useAxiosPublic();
     const [products,refetch] = useCategory();
+    const totalSaving = products.reduce((total, item) => total + item.price - item.priceDiscount, 0)
 
     const data = products.filter(data => data.featured !== 'no');
 
-    const totalSavings = data.reduce((accumulator, product) => {
-        return accumulator + (product?.price - product?.priceDiscount);
-    }, 0);
-    const handleAddtoCart = (xboxid) => {
-
-        const { name, image, price, modelname } = products.find(product => product._id === xboxid);
-
-        const payload = {
-            name: name,
-            image: image,
-            price: price,
-            modelname: modelname,
-        };
-        axiosPublic.post('/cart', payload)
-            .then((res) => {
-                if(res.data.insertedId){
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Product Added to Cart',
-                        icon: 'success',
-                        confirmButtonText: 'ok'
-                    })
-                }
-            })
-    }
-
+    
     const handleDelete = (id) => {
         Swal.fire({
             title: 'Are you sure?',
@@ -129,10 +107,10 @@ const Hero = () => {
                 <hr/>
                 <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 my-4'>
                     {
-                        data.map(w => <div key={w?.id}>
+                        data.map(w => <div key={w?._id}>
                             <div className="card w-full h-fit bg-base-100 shadow-xl">
                                 <figure><Link to={`/${w?.name}/${w?._id}`}><img src={w.image} width={250} height={100} alt="i" /></Link></figure>
-                                <p className="absolute mt-5 px-5 py-1 bg-blue-900 text-white rounded-md">Save: {totalSavings} tk</p>
+                                <p className="absolute mt-5 px-5 py-1 bg-blue-900 text-white rounded-md">Save: {totalSaving} tk</p>
                                 <div className="card-body">
                                     <Link to={`/${w?.name}/${w?._id}`}><h2 className="card-title hover:underline">{w.name}</h2></Link>
                                     <div className="grid gap-2 text-gray-500 my-4">
@@ -150,11 +128,13 @@ const Hero = () => {
                                     <div className="text-center text-xl font-semibold text-red-600 my-4">
                                         <h2>{w.price} tk</h2>
                                     </div>
-                                    <button onClick={() => {handleAddtoCart(w?._id)}} className="btn btn-neutral"><FaCartPlus/>Buy Now</button>
-                                    <div className="flex justify-between">
-                                        <Link to={`/admindashboard/updateproducts/${w?._id}`}><button className="btn btn-neutral"><MdOutlineSystemUpdateAlt/>Update</button></Link>
-                                        <button onClick={() => handleDelete(w?._id)} className="btn btn-neutral"><FaTrash/>Delete</button>
-                                    </div>
+                                    <Link to={`/${w?.name}/${w?._id}`}><button className="btn btn-neutral w-full"><FaCartPlus/>Buy Now</button></Link>
+                                    {
+                                        !isAdmin ? '' : <div className="flex justify-between">
+                                            <Link to={`/admindashboard/updateproducts/${w?._id}`}><button className="btn btn-neutral"><MdOutlineSystemUpdateAlt/>Update</button></Link>
+                                            <button onClick={() => handleDelete(w?._id)} className="btn btn-neutral"><FaTrash/>Delete</button>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>)

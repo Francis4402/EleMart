@@ -5,7 +5,6 @@ import {Link, useLocation, useNavigate} from "react-router-dom";
 import {FaEye, FaEyeSlash} from "react-icons/fa";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
-import {motion} from "framer-motion";
 
 const SignIn = () => {
   const axiosPublic = useAxiosPublic();
@@ -42,7 +41,7 @@ const SignIn = () => {
             email: res.user?.email,
             password: "",
             image: res.user?.photoURL,
-
+            role: res.user?.role || '',
           }
           axiosPublic.post('/users', userInfo)
               .then(res => {

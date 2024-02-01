@@ -14,18 +14,12 @@ import AdminDashBoard from "./Components/Dashboard/AdminDashBoard.jsx";
 import AddProduct from "./Components/Dashboard/AddProduct.jsx";
 import UpdateProduct from "./Components/Dashboard/UpdateProduct.jsx";
 import AllUsers from "./Components/Dashboard/AllUsers.jsx";
-import PrivateRoute from "./Components/PrivateRoutes/PrivateRoute.jsx";
 import Mobiles from "./Components/ProductRoutes/Mobiles.jsx";
 import HomeAppliances from "./Components/ProductRoutes/Home-Appliances.jsx";
 import SmartWatch from "./Components/ProductRoutes/Smart-Watch.jsx";
 import Headphones from "./Components/ProductRoutes/Headphones.jsx";
 import Drone from "./Components/ProductRoutes/Drone.jsx";
-import PortablePowerStation from "./Components/ProductRoutes/Portable-Power-Station.jsx";
-import Battery from "./Components/ProductRoutes/Battery.jsx";
-import TV from "./Components/ProductRoutes/TV.jsx";
 import GameConsole from "./Components/ProductRoutes/GameConsole.jsx";
-import ActionCamera from "./Components/ProductRoutes/Action-Camera.jsx";
-import Printer from "./Components/ProductRoutes/Printer.jsx";
 import WApple from "./Components/BrandRoutes/SmartWatchesBrands/WApple.jsx";
 import WGoogle from "./Components/BrandRoutes/SmartWatchesBrands/WGoogle.jsx";
 import WRealme from "./Components/BrandRoutes/SmartWatchesBrands/WRealme.jsx";
@@ -42,7 +36,6 @@ import AC from "./Components/Home-appliance-Product-Routes/AC.jsx";
 import AirFryer from "./Components/Home-appliance-Product-Routes/Air-Fryer.jsx";
 import Geyser from "./Components/Home-appliance-Product-Routes/Geyser.jsx";
 import Oven from "./Components/Home-appliance-Product-Routes/Oven.jsx";
-import WashingMachine from "./Components/Home-appliance-Product-Routes/Washing-Machine.jsx";
 import MAll from "./Components/BrandRoutes/SmartMobileBrands/MAll.jsx";
 import MApple from "./Components/BrandRoutes/SmartMobileBrands/MApple.jsx";
 import MGoogle from "./Components/BrandRoutes/SmartMobileBrands/MGoogle.jsx";
@@ -72,6 +65,10 @@ import DroneAll from "./Components/BrandRoutes/Drones/DroneAll.jsx";
 import GameConsoleAll from "./Components/BrandRoutes/GameConsoleBrands/GameConsoleAll.jsx";
 import Xbox from "./Components/BrandRoutes/GameConsoleBrands/Xbox.jsx";
 import Playstation from "./Components/BrandRoutes/GameConsoleBrands/Playstation.jsx";
+import AdminRoute from './Components/Hooks/AdminRoute.jsx';
+import PaymentHistory from "./Components/PaymentSetup/PaymentHistory.jsx";
+import PrivateRoute from "./Components/PrivateRoutes/PrivateRoute.jsx";
+
 
 const queryClient = new QueryClient();
 
@@ -91,6 +88,10 @@ const routes = createBrowserRouter([
       {
         path: '/register',
         element: <PrivateRoute2><SignUp/></PrivateRoute2>
+      },
+      {
+        path: '/paymenthistory',
+        element: <PrivateRoute><PaymentHistory/></PrivateRoute>
       },
       {
         path: '/home-appliances',
@@ -278,18 +279,7 @@ const routes = createBrowserRouter([
           }
         ]
       },
-      {
-        path: '/portable-power-station',
-        element: <PortablePowerStation/>
-      },
-      {
-        path: '/battery',
-        element: <Battery/>
-      },
-      {
-        path: '/tv',
-        element: <TV/>
-      },
+
       {
         path: '/game-console',
         element: <GameConsole/>,
@@ -308,14 +298,7 @@ const routes = createBrowserRouter([
           }
         ]
       },
-      {
-        path: '/action-camera',
-        element: <ActionCamera/>
-      },
-      {
-        path: '/printer',
-        element: <Printer/>
-      },
+ 
       {
         path: '/:name/:id',
         element: <ProductDetails/>,
@@ -345,21 +328,21 @@ const routes = createBrowserRouter([
   },
   {
     path: '/admindashboard',
-    element: <PrivateRoute><AdminDashBoard/></PrivateRoute>,
+    element: <AdminRoute><AdminDashBoard/></AdminRoute>,
     children: [
       {
         path: 'addproducts',
-        element: <AddProduct />
+        element: <AdminRoute><AddProduct /></AdminRoute>
       },
       {
         path: 'updateproducts/:id',
-        element: <UpdateProduct/>,
+        element: <AdminRoute><UpdateProduct/></AdminRoute>,
         loader: async ({params}) => await fetch(`http://localhost:3000/addproduct/${params.id}`)
       },
       {
         path: 'allusers',
-        element: <AllUsers/>
-      }
+        element: <AdminRoute><AllUsers/></AdminRoute>
+      },
     ]
   }
 ])

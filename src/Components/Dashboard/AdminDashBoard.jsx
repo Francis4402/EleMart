@@ -11,6 +11,7 @@ const AdminDashBoard = () => {
     const {logOut} = useAuth();
     const [sidenav, setSidenav] = useState(true);
     const [users] = useProfileData();
+
     const handesideNav = () => {
         setSidenav(!sidenav)
     }
@@ -31,7 +32,7 @@ const AdminDashBoard = () => {
                     </div>
                     <div className="mt-10">
                         {
-                            users.map(u => <div key={u.id} className="flex items-center gap-4">
+                            users.map(u => <div key={u.name} className="flex items-center gap-4">
                                 <div className="justify-center flex">
                                     <img className="w-24 h-24 rounded-full" src={u?.image} alt={"i"} />
                                 </div>
@@ -77,7 +78,7 @@ const AdminDashBoard = () => {
                     </div>
                 </div>
 
-                <div className="w-full grid">
+                <div className="w-full flex flex-col">
                     <div className="w-full shadow border h-fit">
                         <div className="justify-between p-4 flex items-center">
                             <div className="flex gap-3 items-center">
