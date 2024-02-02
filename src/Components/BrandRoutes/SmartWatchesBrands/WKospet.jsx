@@ -1,15 +1,14 @@
-import {FaCartPlus, FaTrash} from "react-icons/fa";
-import useCategory from "../../Hooks/useCategory.jsx";
-import {Link} from "react-router-dom";
 import useAxiosPublic from "../../Axiosfiles/useAxiosPublic.jsx";
+import useCategory from "../../Hooks/useCategory.jsx";
 import Swal from "sweetalert2";
+import {Link} from "react-router-dom";
+import {FaCartPlus, FaTrash} from "react-icons/fa";
 import {MdOutlineSystemUpdateAlt} from "react-icons/md";
-import React from "react";
 
-const WWalton = () => {
+const MyComponent = () => {
     const axiosPublic = useAxiosPublic();
     const [products,refetch] = useCategory();
-    const waltonwatch = products.filter(b => b.categories === 'smartwatch' && b.brands === 'walton');
+    const waltonwatch = products.filter(b => b.categories === 'smartwatch' && b.brands === 'kospet');
 
     const handleAddtoCart = (productId) => {
 
@@ -101,4 +100,4 @@ const WWalton = () => {
     );
 };
 
-export default WWalton;
+export default MyComponent;

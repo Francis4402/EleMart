@@ -24,7 +24,6 @@ import WApple from "./Components/BrandRoutes/SmartWatchesBrands/WApple.jsx";
 import WGoogle from "./Components/BrandRoutes/SmartWatchesBrands/WGoogle.jsx";
 import WRealme from "./Components/BrandRoutes/SmartWatchesBrands/WRealme.jsx";
 import WHuawei from "./Components/BrandRoutes/SmartWatchesBrands/WHuawei.jsx";
-import WWalton from "./Components/BrandRoutes/SmartWatchesBrands/WWalton.jsx";
 import WAll from "./Components/BrandRoutes/SmartWatchesBrands/WAll.jsx";
 import ProductDetails from "./Components/ProductDetailRoutes/ProductDetails.jsx";
 import Specification from "./Components/ProductDetailRoutes/Specification.jsx";
@@ -68,6 +67,9 @@ import Playstation from "./Components/BrandRoutes/GameConsoleBrands/Playstation.
 import AdminRoute from './Components/Hooks/AdminRoute.jsx';
 import PaymentHistory from "./Components/PaymentSetup/PaymentHistory.jsx";
 import PrivateRoute from "./Components/PrivateRoutes/PrivateRoute.jsx";
+import Epage from "./Components/ErrorPages/Epage.jsx";
+import Page404 from "./Components/ErrorPages/Page404.jsx";
+import WKospet from "./Components/BrandRoutes/SmartWatchesBrands/WKospet.jsx";
 
 
 const queryClient = new QueryClient();
@@ -76,6 +78,7 @@ const routes = createBrowserRouter([
   {
     path: '/',
     element: <App/>,
+    errorElement: <Epage/>,
     children: [
       {
         path: '/',
@@ -200,8 +203,8 @@ const routes = createBrowserRouter([
             element: <WHuawei/>
           },
           {
-            path: 'walton',
-            element: <WWalton/>
+            path: 'kospet',
+            element: <WKospet/>
           }
         ]
       },
@@ -344,6 +347,10 @@ const routes = createBrowserRouter([
         element: <AdminRoute><AllUsers/></AdminRoute>
       },
     ]
+  },
+  {
+    path: '/*',
+    element: <Page404/>
   }
 ])
 

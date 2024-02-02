@@ -38,12 +38,12 @@ const Hero = () => {
                     axiosPublic.delete(`/addproduct/${id}`)
                         .then(res => {
                             if(res.data.deletedCount > 0){
-                                refetch();
+                                refetch().then(() => {});
                                 Swal.fire({
                                     title: "Deleted!",
                                     text: "Product Remove.",
                                     icon: "success"
-                                });
+                                }).then(() => {});
                             }
                         })
                 }
@@ -79,13 +79,8 @@ const Hero = () => {
 
     return (
         <div>
-            <div className="flex gap-3 items-center py-10">
-                <input type="text" placeholder="search" className="w-full rounded-lg p-3 shadow" />
-                <div className="btn btn-neutral shadow-lg">
-                    <FaSearch size={20} />
-                </div>
-            </div>
-            <div className="flex flex-wrap justify-center gap-5">
+
+            <div className="flex flex-wrap justify-center gap-5 py-10">
                 {
                     logoIcons.map(icons => <div key={icons.name}>
                         <Link to={`/${icons.name.toLowerCase()}`}>

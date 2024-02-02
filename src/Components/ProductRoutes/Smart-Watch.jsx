@@ -22,7 +22,7 @@ const SmartWatch = () => {
         },
         {
             id: 5,
-            title: 'Walton'
+            title: 'Kospet'
         }
     ]
 

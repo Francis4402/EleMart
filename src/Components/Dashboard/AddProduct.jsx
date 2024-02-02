@@ -32,6 +32,7 @@ const AddProduct = () => {
                 displaytype: data.displaytype,
                 resolution: data.resolution,
                 brightness: data.brightness,
+                refreshrate: data.refreshrate,
                 displayfeatures: data.displayfeatures,
                 chipset: data.chipset,
                 cputype: data.cputype,
@@ -121,7 +122,7 @@ const AddProduct = () => {
             const AddProducts = await axiosPublic.post('/addproduct', productsdata);
             if(AddProducts.data.insertedId){
                 reset();
-                Swal.fire({
+                await Swal.fire({
                     position: "top-end",
                     icon: "success",
                     title: 'Product added',
@@ -129,7 +130,7 @@ const AddProduct = () => {
                     timer: 1500
                 })
             } else {
-                Swal.fire({
+                await Swal.fire({
                     position: "top-end",
                     icon: "error",
                     title: 'Fill all the inputs',
@@ -202,7 +203,7 @@ const AddProduct = () => {
                                                     <option value="google">Google</option>
                                                     <option value="realme">Realme</option>
                                                     <option value="huawei">Huawei</option>
-                                                    <option value="walton">Walton</option>
+                                                    <option value="kospet">KOSPET</option>
                                                 </>
                                             )}
 
@@ -306,7 +307,7 @@ const AddProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Price Discount</span>
                                         </label>
-                                        <input type="number" {...register('priceDiscount', {required: true})} placeholder="Price Discount" className="input input-bordered w-full max-w-xl" />
+                                        <input type="number" {...register('priceDiscount')} placeholder="Price Discount" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -372,11 +373,17 @@ const AddProduct = () => {
                                 <div className="grid lg:grid-cols-2 gap-4">
                                     <div className="form-control">
                                         <label className="label">
+                                            <span className="label-text">Refresh Rate</span>
+                                        </label>
+                                        <input type="text" {...register('refreshrate')} placeholder="Refresh Rate" className="input input-bordered w-full max-w-xl" />
+                                    </div>
+
+                                    <div className="form-control">
+                                        <label className="label">
                                             <span className="label-text">Features</span>
                                         </label>
                                         <input type="text" {...register('displayfeatures')} placeholder="Features" className="input input-bordered w-full max-w-xl" />
                                     </div>
-
                                 </div>
 
                                 <div className="my-2">
@@ -720,7 +727,7 @@ const AddProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Coverage</span>
                                         </label>
-                                        <input type="text" {...register('coverage')} placeholder="Capacity" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" {...register('coverage')} placeholder="Coverage" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 

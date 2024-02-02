@@ -11,7 +11,7 @@ const AGeneral = () => {
     const axiosPublic = useAxiosPublic();
     const [products, refetch] = useCategory();
 
-    const ACGeneral = products.filter(data => data.categories === 'ac' && data.brands === 'general');
+    const ACGeneral = products.filter(data => data.categories === 'ac' && data.brands === 'ganeral');
 
     const handleAddtoCart = (Generalid) => {
 

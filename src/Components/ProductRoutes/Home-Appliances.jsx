@@ -21,6 +21,7 @@ const HomeAppliances = () => {
         },
     ]
 
+
     return (
         <div className="justify-center flex border">
             <div className="container">

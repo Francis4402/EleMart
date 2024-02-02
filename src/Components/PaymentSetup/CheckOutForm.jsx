@@ -19,7 +19,7 @@ const CheckOutForm = ({isClose}) => {
     const {user} = UseAuth();
     const [carts, refetch] = useCart();
     const navigate = useNavigate();
-    const [processing, setProcessing] = useState(false);
+
 
     const totalprice = carts.reduce((total, item) => total + item.price * item.quantity, 0)
 
@@ -85,17 +85,18 @@ const CheckOutForm = ({isClose}) => {
                 const payment = {
                     email: user.email,
                     price: totalprice,
+                    name: carts.map(item => item.name),
                     transactionId: paymentIntent.id,
                     date: new Date(),
-                    cardIds: carts.map(item => item.name),
+                    cardIds: carts.map(item => item._id),
                     status: 'pending'
                 }
 
                 const res = await axiosSecure.post('/payments', payment)
                 console.log('payment saved', res.data);
-                refetch();
+                await refetch();
                 if(res.data?.paymentResult?.insertedId){
-                    Swal.fire({
+                    await Swal.fire({
                         position: "top-end",
                         icon: "success",
                         title: "Thank you for the payment",
@@ -127,8 +128,8 @@ const CheckOutForm = ({isClose}) => {
                 }}
             />
             <div className="justify-center flex">
-                <button onClick={isClose} className="btn btn-sm btn-primary mt-5 w-full" type="submit" disabled={!stripe || !clientSecret || processing}>
-                    {processing ? 'Processing...' : 'Pay'}
+                <button onClick={isClose} className="btn btn-sm btn-primary mt-5 w-full" type="submit" disabled={!stripe || !clientSecret}>
+                    Pay
                 </button>
             </div>
 

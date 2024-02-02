@@ -10,7 +10,7 @@ const ASinger = () => {
     const axiosPublic = useAxiosPublic();
     const [products, refetch] = useCategory();
 
-    const ACSinger = products.filter(data => data.categories === 'ac' && data.brands === 'acsinger');
+    const ACSinger = products.filter(data => data.categories === 'ac' && data.brands === 'singer');
 
     const handleAddtoCart = (singerid) => {
 

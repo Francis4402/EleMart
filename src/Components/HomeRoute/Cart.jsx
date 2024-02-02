@@ -27,7 +27,7 @@ const Cart = ({open, setOpen}) => {
         axiosPublic.delete(`/cart/${id}`)
             .then(() => {
                 toast.success('Item removed from cart')
-                refetch();
+                refetch().then(() => {});
             })
     }
 
