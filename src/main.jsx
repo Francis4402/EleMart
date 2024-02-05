@@ -67,9 +67,12 @@ import Playstation from "./Components/BrandRoutes/GameConsoleBrands/Playstation.
 import AdminRoute from './Components/Hooks/AdminRoute.jsx';
 import PaymentHistory from "./Components/PaymentSetup/PaymentHistory.jsx";
 import PrivateRoute from "./Components/PrivateRoutes/PrivateRoute.jsx";
+import {Provider} from "react-redux";
 import Epage from "./Components/ErrorPages/Epage.jsx";
 import Page404 from "./Components/ErrorPages/Page404.jsx";
 import WKospet from "./Components/BrandRoutes/SmartWatchesBrands/WKospet.jsx";
+import store from "./store/store.js";
+
 
 
 const queryClient = new QueryClient();
@@ -358,10 +361,10 @@ const routes = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        <Toaster position="top-center"/>
-        <RouterProvider router={routes} />
-      </QueryClientProvider>
+        <QueryClientProvider client={queryClient}>
+          <Toaster position="top-center"/>
+          <RouterProvider router={routes} />
+        </QueryClientProvider>
     </AuthProvider>
   </React.StrictMode>,
 )

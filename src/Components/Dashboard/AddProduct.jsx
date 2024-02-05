@@ -26,7 +26,7 @@ const AddProduct = () => {
                 name: data.name,
                 image: res.data.data.display_url,
                 price: parseInt(data.price, 10),
-                priceDiscount: parseInt(data.priceDiscount, 10),
+                regularPrice: parseInt(data.regularPrice, 10),
                 modelname: data.modelname,
                 size: data.size,
                 displaytype: data.displaytype,
@@ -307,7 +307,7 @@ const AddProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Price Discount</span>
                                         </label>
-                                        <input type="number" {...register('priceDiscount')} placeholder="Price Discount" className="input input-bordered w-full max-w-xl" />
+                                        <input type="number" {...register('regularPrice')} placeholder="Regular Price" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 

@@ -6,6 +6,7 @@ import 'react-awesome-button/dist/styles.css';
 import useAxiosPublic from "../Axiosfiles/useAxiosPublic.jsx";
 import Swal from "sweetalert2";
 import UseAuth from "../Hooks/useAuth.jsx";
+
 const ProductDetails = () => {
 
     const {user} = UseAuth();
@@ -44,7 +45,7 @@ const ProductDetails = () => {
                         text: 'Product Added to Cart',
                         icon: 'success',
                         confirmButtonText: 'ok'
-                    })
+                    }).then(() => {})
                 }
             })
     }
@@ -66,7 +67,7 @@ const ProductDetails = () => {
                             <div>
                                 <h1 className="text-2xl font-semibold">{name}</h1>
                                 <div>
-                                    <button className="my-4 bg-gray-200 px-3 py-2 rounded-full">Price: <span className="font-semibold">{price}</span> tk</button>
+                                    <button className="my-4 bg-gray-200 px-3 py-2 rounded-full">Price: <span className="font-semibold">${price}</span></button>
                                 </div>
                                 <h1 className="text-xl font-semibold my-4">Key Features</h1>
                                 <ul className="grid gap-2">
@@ -97,8 +98,8 @@ const ProductDetails = () => {
 
                                             <div className="grid">
                                                 <div className="flex gap-4">
-                                                    <h1 className="text-xl font-semibold">{priceDiscount} tk</h1>
-                                                    <h1 className="text-xl font-semibold line-through">{price} tk</h1>
+                                                    <h1 className="text-xl font-semibold">${priceDiscount}</h1>
+                                                    <h1 className="text-xl font-semibold line-through">${price}</h1>
                                                 </div>
 
                                                 <p className="text-xs">Cash Discount Price</p>
@@ -113,7 +114,7 @@ const ProductDetails = () => {
                                             </div>
 
                                             <div className="grid">
-                                                <h1 className="text-xl font-semibold">{price} tk</h1>
+                                                <h1 className="text-xl font-semibold">${price}</h1>
                                                 <p className="text-xs">Cash Discount Price</p>
                                                 <p className="text-gray-400 text-xs">Online / Cash Payment</p>
                                             </div>

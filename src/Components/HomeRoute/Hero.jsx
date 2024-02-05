@@ -1,4 +1,4 @@
-import {FaCartPlus, FaSearch, FaTrash} from "react-icons/fa";
+import {FaCartPlus, FaTrash} from "react-icons/fa";
 import { LuMicrowave } from "react-icons/lu";
 import { IoWatchOutline, IoGameControllerOutline  } from "react-icons/io5";
 import { GiDeliveryDrone } from "react-icons/gi";
@@ -11,6 +11,7 @@ import useCategory from "../Hooks/useCategory.jsx";
 import Swal from "sweetalert2";
 import {MdOutlineSystemUpdateAlt} from "react-icons/md";
 import useAdmin from "../Hooks/useAdmin.jsx";
+import React from "react";
 
 
 const Hero = () => {
@@ -18,11 +19,12 @@ const Hero = () => {
     const [isAdmin] = useAdmin();
     const axiosPublic = useAxiosPublic();
     const [products,refetch] = useCategory();
-    const totalSaving = products.reduce((total, item) => total + item.price - item.priceDiscount, 0)
+
 
     const data = products.filter(data => data.featured !== 'no');
 
-    
+
+
     const handleDelete = (id) => {
         Swal.fire({
             title: 'Are you sure?',
@@ -78,62 +80,63 @@ const Hero = () => {
     ]
 
     return (
-        <div>
-
-            <div className="flex flex-wrap justify-center gap-5 py-10">
-                {
-                    logoIcons.map(icons => <div key={icons.name}>
-                        <Link to={`/${icons.name.toLowerCase()}`}>
-                            <motion.button whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} transition={{type: "spring", damping: 14, stiffness: 500}} className="bg-white hover:bg-gray-200 p-10 rounded-xl shadow">
-                                <p className="flex justify-center">{icons.icon}</p>
-                                <p className="text-center">{icons.name}</p>
-                            </motion.button>
-                        </Link>
-                    </div>)
-                }
-            </div>
-
-            <div className="justify-center grid text-center py-24">
-                <h3 className="text-2xl font-semibold">Featured Products</h3>
-                <p>Check && Get Your Desired Product!</p>
-            </div>
-
-            <div>
-                <hr/>
-                <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 my-4'>
+        <div className="justify-center flex">
+            <div className="container md:px-0 px-5">
+                <div className="flex flex-wrap justify-center gap-5 py-10">
                     {
-                        data.map(w => <div key={w?._id}>
-                            <div className="card w-full h-fit bg-base-100 shadow-xl">
-                                <figure><Link to={`/${w?.name}/${w?._id}`}><img src={w.image} width={250} height={100} alt="i" /></Link></figure>
-                                <p className="absolute mt-5 px-5 py-1 bg-blue-900 text-white rounded-md">Save: {totalSaving} tk</p>
-                                <div className="card-body">
-                                    <Link to={`/${w?.name}/${w?._id}`}><h2 className="card-title hover:underline">{w.name}</h2></Link>
-                                    <div className="grid gap-2 text-gray-500 my-4">
-                                        {w.modelname === '' ? '' : <li>{w.modelname}</li>}
-                                        {w.feature1 === '' ? '' : <li>{w.feature1}</li>}
-                                        {w.feature2 === '' ? '' : <li>{w.feature2}</li>}
-                                        {w.feature3 === '' ? '' : <li>{w.feature3}</li>}
-                                        {w.feature4 === '' ? '' : <li>{w.feature4}</li>}
-                                        {w.displaytype === '' ? '' : <li>{w.displaytype}</li>}
-                                        {w.chipset === '' ? '' : <li>{w.chipset}</li>}
-                                        {w.sensor === '' ? '' : <li>{w.sensor}</li>}
-                                        {w.iprating === '' ? '' : <li>{w.iprating}</li>}
-                                    </div>
-                                    <hr/>
-                                    <div className="text-center text-xl font-semibold text-red-600 my-4">
-                                        <h2>{w.price} tk</h2>
-                                    </div>
-                                    <Link to={`/${w?.name}/${w?._id}`}><button className="btn btn-neutral w-full"><FaCartPlus/>Buy Now</button></Link>
-                                    {
-                                        !isAdmin ? '' : <div className="flex justify-between">
-                                            <Link to={`/admindashboard/updateproducts/${w?._id}`}><button className="btn btn-neutral"><MdOutlineSystemUpdateAlt/>Update</button></Link>
-                                            <button onClick={() => handleDelete(w?._id)} className="btn btn-neutral"><FaTrash/>Delete</button>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
+                        logoIcons.map(icons => <div key={icons.name}>
+                            <Link to={`/${icons.name.toLowerCase()}`}>
+                                <motion.button whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} transition={{type: "spring", damping: 14, stiffness: 500}} className="bg-white hover:bg-gray-200 p-10 rounded-xl shadow">
+                                    <p className="flex justify-center">{icons.icon}</p>
+                                    <p className="text-center">{icons.name}</p>
+                                </motion.button>
+                            </Link>
                         </div>)
                     }
+                </div>
+
+                <div className="justify-center grid text-center py-14">
+                    <h3 className="text-2xl font-semibold">Featured Products</h3>
+                    <p>Check && Get Your Desired Product!</p>
+                </div>
+
+                <div>
+                    <hr/>
+                    <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 my-4'>
+                        {
+                            data.map(w => <div key={w?._id}>
+                                <div className="card w-full h-fit bg-base-100 shadow-xl">
+                                    <figure><Link to={`/${w?.name}/${w?._id}`}><img src={w.image} width={250} height={100} alt="i" /></Link></figure>
+
+                                    <div className="card-body">
+                                        <Link to={`/${w?.name}/${w?._id}`}><h2 className="card-title hover:underline">{w.name}</h2></Link>
+                                        <div className="grid gap-2 text-gray-500 my-4">
+                                            {w.modelname === '' ? '' : <li>{w.modelname}</li>}
+                                            {w.feature1 === '' ? '' : <li>{w.feature1}</li>}
+                                            {w.feature2 === '' ? '' : <li>{w.feature2}</li>}
+                                            {w.feature3 === '' ? '' : <li>{w.feature3}</li>}
+                                            {w.feature4 === '' ? '' : <li>{w.feature4}</li>}
+                                            {w.displaytype === '' ? '' : <li>{w.displaytype}</li>}
+                                            {w.chipset === '' ? '' : <li>{w.chipset}</li>}
+                                            {w.sensor === '' ? '' : <li>{w.sensor}</li>}
+                                            {w.iprating === '' ? '' : <li>{w.iprating}</li>}
+                                        </div>
+                                        <hr/>
+                                        <div className="text-center text-xl font-semibold text-red-600 my-4">
+                                            {w.price === '' ? <h2>To be Announced</h2> : <h2>${w?.price}</h2>}
+                                        </div>
+                                        <Link to={`/${w?.name}/${w?._id}`}><button className="btn btn-neutral w-full"><FaCartPlus/>Buy Now</button></Link>
+                                        {
+                                            !isAdmin ? '' : <div className="flex justify-between">
+                                                <Link to={`/admindashboard/updateproducts/${w?._id}`}><button className="btn btn-neutral"><MdOutlineSystemUpdateAlt/>Update</button></Link>
+                                                <button onClick={() => handleDelete(w?._id)} className="btn btn-neutral"><FaTrash/>Delete</button>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>)
+                        }
+                    </div>
                 </div>
             </div>
         </div>

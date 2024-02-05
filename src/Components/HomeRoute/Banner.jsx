@@ -5,7 +5,7 @@ const Banner = () => {
         <div className="relative overflow-hidden bg-white">
             <div className="pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40">
                 <div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
-                    <div className="sm:max-w-lg">
+                    <div className="md:max-w-md">
                         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                             Buy The Best Products from ELe-Mart
                         </h1>
@@ -23,55 +23,55 @@ const Banner = () => {
                                 <div className="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-8">
                                     <div className="flex items-center space-x-6 lg:space-x-8">
                                         <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                            <div className="h-64 w-64 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
+                                            <div className="h-64 w-64 overflow-hidden rounded-lg bg-gray-100 shadow-md">
                                                 <img
-                                                    src="https://i.ibb.co/hs487XR/xbox-wireless-1-500x500.jpg"
+                                                    src="https://i.ibb.co/88D1pJK/xbox-wireless-1-500x500.png"
                                                     alt="i"
                                                     className="h-full w-full object-cover object-center"
                                                 />
                                             </div>
-                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                            <div className="h-64 w-64 overflow-hidden rounded-lg bg-gray-100 shadow-md">
                                                 <img
-                                                    src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg"
+                                                    src="https://i.ibb.co/tPGqtJt/mijia-induction-cooker-youth-edition-01-500x500.png"
                                                     alt=""
                                                     className="h-full w-full object-cover object-center"
                                                 />
                                             </div>
                                         </div>
                                         <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                            <div className="h-64 w-64 overflow-hidden rounded-lg bg-gray-100 shadow-md">
                                                 <img
-                                                    src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg"
+                                                    src="https://i.ibb.co/gR2bjM5/watch-gt-3-01-500x500.png"
                                                     alt=""
                                                     className="h-full w-full object-cover object-center"
                                                 />
                                             </div>
-                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                            <div className="h-64 w-64 overflow-hidden rounded-lg bg-gray-100 shadow-md">
                                                 <img
-                                                    src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg"
+                                                    src="https://i.ibb.co/2jrf055/hwm70-1269s5-01-500x500.png"
                                                     alt=""
                                                     className="h-full w-full object-cover object-center"
                                                 />
                                             </div>
-                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                            <div className="h-64 w-64 overflow-hidden rounded-lg bg-gray-100 shadow-md">
                                                 <img
-                                                    src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-05.jpg"
+                                                    src="https://i.ibb.co/FH2gmnR/asga24fmtb-01-500x500.png"
                                                     alt=""
                                                     className="h-full w-full object-cover object-center"
                                                 />
                                             </div>
                                         </div>
                                         <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                            <div className="h-64 w-44 overflow-hidden rounded-lg bg-gray-100 shadow-md">
                                                 <img
-                                                    src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-06.jpg"
+                                                    src="https://i.ibb.co/5RgbY54/pro-x-gaming-headset-2-500x500.png"
                                                     alt=""
                                                     className="h-full w-full object-cover object-center"
                                                 />
                                             </div>
-                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                            <div className="h-64 w-64 overflow-hidden rounded-lg bg-gray-100 shadow-md">
                                                 <img
-                                                    src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-07.jpg"
+                                                    src="https://i.ibb.co/1fdKY7c/oneplus-nord-ce-3-lite-5g-black-500x500.png"
                                                     alt=""
                                                     className="h-full w-full object-cover object-center"
                                                 />
