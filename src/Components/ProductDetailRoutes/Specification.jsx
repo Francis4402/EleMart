@@ -224,7 +224,7 @@ const Specification = () => {
                 }
 
                 {
-                    otherfeatures === '' ? '' : <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Features</p>
+                    sensor === '' ? '' : <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Features</p>
                 }
 
 
@@ -301,7 +301,7 @@ const Specification = () => {
                 }
 
                 {
-                    actype === '' ? '' : <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Basic Information</p>
+                    actype && technology === '' ? '' : <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Basic Information</p>
                 }
 
                 {
@@ -403,7 +403,7 @@ const Specification = () => {
                 }
 
                 {
-                    drivermagnet === '' ? '' : <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Headphones Information</p>
+                    drivermagnet && impedance === '' ? '' : <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Headphones Information</p>
                 }
 
                 {
@@ -498,7 +498,7 @@ const Specification = () => {
                 }
 
                 {
-                    warranty === '' ? '' : <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Warranty Information</p>
+                    warranty && installationspolicy === '' ? '' : <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Warranty Information</p>
                 }
 
                 {

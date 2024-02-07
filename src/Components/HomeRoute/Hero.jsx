@@ -1,7 +1,6 @@
-import {FaCartPlus, FaTrash} from "react-icons/fa";
+import {FaTrash} from "react-icons/fa";
 import { LuMicrowave } from "react-icons/lu";
 import { IoWatchOutline, IoGameControllerOutline  } from "react-icons/io5";
-import { GiDeliveryDrone } from "react-icons/gi";
 import { PiHeadphones } from "react-icons/pi";
 import { CiMobile3 } from "react-icons/ci";
 import {motion} from "framer-motion";
@@ -11,7 +10,7 @@ import useCategory from "../Hooks/useCategory.jsx";
 import Swal from "sweetalert2";
 import {MdOutlineSystemUpdateAlt} from "react-icons/md";
 import useAdmin from "../Hooks/useAdmin.jsx";
-import React from "react";
+
 
 
 const Hero = () => {
@@ -19,9 +18,6 @@ const Hero = () => {
     const [isAdmin] = useAdmin();
     const axiosPublic = useAxiosPublic();
     const [products,refetch] = useCategory();
-
-
-    const data = products.filter(data => data.featured !== 'no');
 
 
 
@@ -70,10 +66,6 @@ const Hero = () => {
             icon: <PiHeadphones size={80}/>
         },
         {
-            name: "Drone",
-            icon: <GiDeliveryDrone size={80}/>
-        },
-        {
             name: "Game-Console",
             icon: <IoGameControllerOutline size={80}/>
         },
@@ -101,42 +93,46 @@ const Hero = () => {
                 </div>
 
                 <div>
-                    <hr/>
-                    <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 my-4'>
-                        {
-                            data.map(w => <div key={w?._id}>
-                                <div className="card w-full h-fit bg-base-100 shadow-xl">
-                                    <figure><Link to={`/${w?.name}/${w?._id}`}><img src={w.image} width={250} height={100} alt="i" /></Link></figure>
+                    {
+                        products.length === 0 ? <h1 className="text-2xl font-semibold min-h-screen w-full justify-center items-center flex">There is no data</h1> :
+                            <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 my-4'>
+                                {
+                                    products.map(w => <div key={w?._id}>
+                                        <div className="card w-full h-fit bg-base-100 shadow-xl">
+                                            <figure><Link to={`/${w?.name}/${w?._id}`}><img src={w.image} width={250} height={100} alt="i" /></Link></figure>
 
-                                    <div className="card-body">
-                                        <Link to={`/${w?.name}/${w?._id}`}><h2 className="card-title hover:underline">{w.name}</h2></Link>
-                                        <div className="grid gap-2 text-gray-500 my-4">
-                                            {w.modelname === '' ? '' : <li>{w.modelname}</li>}
-                                            {w.feature1 === '' ? '' : <li>{w.feature1}</li>}
-                                            {w.feature2 === '' ? '' : <li>{w.feature2}</li>}
-                                            {w.feature3 === '' ? '' : <li>{w.feature3}</li>}
-                                            {w.feature4 === '' ? '' : <li>{w.feature4}</li>}
-                                            {w.displaytype === '' ? '' : <li>{w.displaytype}</li>}
-                                            {w.chipset === '' ? '' : <li>{w.chipset}</li>}
-                                            {w.sensor === '' ? '' : <li>{w.sensor}</li>}
-                                            {w.iprating === '' ? '' : <li>{w.iprating}</li>}
-                                        </div>
-                                        <hr/>
-                                        <div className="text-center text-xl font-semibold text-red-600 my-4">
-                                            {w.price === '' ? <h2>To be Announced</h2> : <h2>${w?.price}</h2>}
-                                        </div>
-                                        <Link to={`/${w?.name}/${w?._id}`}><button className="btn btn-neutral w-full"><FaCartPlus/>Buy Now</button></Link>
-                                        {
-                                            !isAdmin ? '' : <div className="flex justify-between">
-                                                <Link to={`/admindashboard/updateproducts/${w?._id}`}><button className="btn btn-neutral"><MdOutlineSystemUpdateAlt/>Update</button></Link>
-                                                <button onClick={() => handleDelete(w?._id)} className="btn btn-neutral"><FaTrash/>Delete</button>
+                                            <div className="card-body">
+                                                <Link to={`/${w?.name}/${w?._id}`}><h2 className="card-title hover:underline">{w.name}</h2></Link>
+                                                <div className="grid gap-2 text-gray-500 my-4">
+                                                    {w.modelname === '' ? '' : <li>{w.modelname}</li>}
+                                                    {w.feature1 === '' ? '' : <li>{w.feature1}</li>}
+                                                    {w.feature2 === '' ? '' : <li>{w.feature2}</li>}
+                                                    {w.feature3 === '' ? '' : <li>{w.feature3}</li>}
+                                                    {w.feature4 === '' ? '' : <li>{w.feature4}</li>}
+                                                    {w.displaytype === '' ? '' : <li>{w.displaytype}</li>}
+                                                    {w.chipset === '' ? '' : <li>{w.chipset}</li>}
+                                                    {w.sensor === '' ? '' : <li>{w.sensor}</li>}
+                                                    {w.iprating === '' ? '' : <li>{w.iprating}</li>}
+                                                </div>
+                                                <hr/>
+                                                <div className="justify-center text-xl font-semibold text-red-600 my-4 flex gap-3">
+                                                    <div>Price:</div>
+                                                    <div>{w.price === '' ? <h2>To be Announced</h2> : <h2>${w?.price}</h2>}</div>
+                                                </div>
+
+                                                {
+                                                    !isAdmin ? '' : <div className="flex justify-between">
+                                                        <Link to={`/admindashboard/updateproducts/${w?._id}`}><button className="btn btn-neutral"><MdOutlineSystemUpdateAlt/>Update</button></Link>
+                                                        <button onClick={() => handleDelete(w?._id)} className="btn btn-neutral"><FaTrash/>Delete</button>
+                                                    </div>
+                                                }
                                             </div>
-                                        }
-                                    </div>
-                                </div>
-                            </div>)
-                        }
-                    </div>
+                                        </div>
+                                    </div>)
+                                }
+                            </div>
+
+                    }
                 </div>
             </div>
         </div>
