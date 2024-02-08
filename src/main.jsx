@@ -67,11 +67,10 @@ import Playstation from "./Components/BrandRoutes/GameConsoleBrands/Playstation.
 import AdminRoute from './Components/Hooks/AdminRoute.jsx';
 import PaymentHistory from "./Components/PaymentSetup/PaymentHistory.jsx";
 import PrivateRoute from "./Components/PrivateRoutes/PrivateRoute.jsx";
-import {Provider} from "react-redux";
 import Epage from "./Components/ErrorPages/Epage.jsx";
 import Page404 from "./Components/ErrorPages/Page404.jsx";
 import WKospet from "./Components/BrandRoutes/SmartWatchesBrands/WKospet.jsx";
-import store from "./store/store.js";
+
 
 
 
@@ -307,18 +306,18 @@ const routes = createBrowserRouter([
  
       {
         path: '/:name/:id',
-        element: <ProductDetails/>,
-        loader: ({params}) => fetch(`http://localhost:3000/product/${params.name}/${params.id}`),
+        element: <PrivateRoute><ProductDetails/></PrivateRoute>,
+        loader: ({params}) => fetch(`https://ele-mart-serve-side.vercel.app/product/${params.name}/${params.id}`),
         children: [
           {
             path: '/:name/:id',
             element: <Specification/>,
-            loader: ({params}) => fetch(`http://localhost:3000/product/${params.name}/${params.id}`)
+            loader: ({params}) => fetch(`https://ele-mart-serve-side.vercel.app/product/${params.name}/${params.id}`)
           },
           {
             path: '/:name/:id/description',
             element: <Description/>,
-            loader: ({params}) => fetch(`http://localhost:3000/product/${params.name}/${params.id}`)
+            loader: ({params}) => fetch(`https://ele-mart-serve-side.vercel.app/product/${params.name}/${params.id}`)
           },
           {
             path: '/:name/:id/questions',
@@ -343,7 +342,7 @@ const routes = createBrowserRouter([
       {
         path: 'updateproducts/:id',
         element: <AdminRoute><UpdateProduct/></AdminRoute>,
-        loader: async ({params}) => await fetch(`http://localhost:3000/addproduct/${params.id}`)
+        loader: async ({params}) => await fetch(`https://ele-mart-serve-side.vercel.app/addproduct/${params.id}`)
       },
       {
         path: 'allusers',

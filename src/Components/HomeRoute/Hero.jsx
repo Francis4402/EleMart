@@ -13,12 +13,12 @@ import useAdmin from "../Hooks/useAdmin.jsx";
 
 
 
+
 const Hero = () => {
 
     const [isAdmin] = useAdmin();
     const axiosPublic = useAxiosPublic();
     const [products,refetch] = useCategory();
-
 
 
     const handleDelete = (id) => {
@@ -99,7 +99,9 @@ const Hero = () => {
                                 {
                                     products.map(w => <div key={w?._id}>
                                         <div className="card w-full h-fit bg-base-100 shadow-xl">
-                                            <figure><Link to={`/${w?.name}/${w?._id}`}><img src={w.image} width={250} height={100} alt="i" /></Link></figure>
+                                            <figure>
+                                                <Link to={`/${w?.name}/${w?._id}`}><img src={w.image} width={250} height={100} alt="i" /></Link>
+                                            </figure>
 
                                             <div className="card-body">
                                                 <Link to={`/${w?.name}/${w?._id}`}><h2 className="card-title hover:underline">{w.name}</h2></Link>
@@ -117,7 +119,7 @@ const Hero = () => {
                                                 <hr/>
                                                 <div className="justify-center text-xl font-semibold text-red-600 my-4 flex gap-3">
                                                     <div>Price:</div>
-                                                    <div>{w.price === '' ? <h2>To be Announced</h2> : <h2>${w?.price}</h2>}</div>
+                                                    <div>{w.price === 0 ? <h2>To be Announced</h2> : <h2>${w?.price}</h2>}</div>
                                                 </div>
 
                                                 {

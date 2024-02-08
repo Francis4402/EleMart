@@ -10,7 +10,7 @@ import UseAuth from "../Hooks/useAuth.jsx";
 const ProductDetails = () => {
 
     const {user} = UseAuth();
-    const {_id, name, image, price, priceDiscount, modelname, displaytype, chipset, sensor, iprating, feature1, feature2, feature3, feature4} = useLoaderData();
+    const {_id, name, image, price, regularPrice, modelname, displaytype, chipset, sensor, iprating, feature1, feature2, feature3, feature4} = useLoaderData();
 
     const [number, setNumber] = useState(1);
 
@@ -98,8 +98,8 @@ const ProductDetails = () => {
 
                                             <div className="grid">
                                                 <div className="flex gap-4">
-                                                    <h1 className="text-xl font-semibold">${priceDiscount}</h1>
-                                                    <h1 className="text-xl font-semibold line-through">${price}</h1>
+                                                    <h1 className="text-xl font-semibold">${price}</h1>
+                                                    <h1 className="text-xl font-semibold line-through">${regularPrice}</h1>
                                                 </div>
 
                                                 <p className="text-xs">Cash Discount Price</p>
@@ -107,18 +107,6 @@ const ProductDetails = () => {
                                             </div>
                                         </div>
 
-                                        <div className="bg-white flex items-center border my-4 gap-4 rounded">
-
-                                            <div className="bg-gray-100 w-16 h-28 justify-center flex">
-                                                <input type="checkbox" />
-                                            </div>
-
-                                            <div className="grid">
-                                                <h1 className="text-xl font-semibold">${price}</h1>
-                                                <p className="text-xs">Cash Discount Price</p>
-                                                <p className="text-gray-400 text-xs">Online / Cash Payment</p>
-                                            </div>
-                                        </div>
                                     </div>
 
                                     <div className="justify-start flex items-center gap-10 my-4">

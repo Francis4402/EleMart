@@ -66,7 +66,7 @@ const WApple = () => {
                                         <hr/>
                                         <div className="justify-center text-xl font-semibold text-red-600 my-4 flex gap-3">
                                             <div>Price:</div>
-                                            <div>{w.price === '' ? <h2>To be Announced</h2> : <h2>${w?.price}</h2>}</div>
+                                            <div>{w.price === 0 ? <h2>To be Announced</h2> : <h2>${w?.price}</h2>}</div>
                                         </div>
 
                                         {
