@@ -124,8 +124,8 @@ const Hero = () => {
 
                                                 {
                                                     !isAdmin ? '' : <div className="flex justify-between">
-                                                        <Link to={`/admindashboard/updateproducts/${w?._id}`}><button className="btn btn-neutral"><MdOutlineSystemUpdateAlt/>Update</button></Link>
-                                                        <button onClick={() => handleDelete(w?._id)} className="btn btn-neutral"><FaTrash/>Delete</button>
+                                                        <Link to={`/admindashboard/updateproducts/${w?._id}`}><button className="btn btn-neutral flex"><MdOutlineSystemUpdateAlt/>Update</button></Link>
+                                                        <button onClick={() => handleDelete(w?._id)} className="btn btn-neutral flex"><FaTrash/>Delete</button>
                                                     </div>
                                                 }
                                             </div>
