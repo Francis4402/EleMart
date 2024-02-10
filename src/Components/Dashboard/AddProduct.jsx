@@ -305,7 +305,7 @@ const AddProduct = () => {
                                     
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text">Price Discount</span>
+                                            <span className="label-text">Regular Price</span>
                                         </label>
                                         <input type="number" {...register('regularPrice')} placeholder="Regular Price" className="input input-bordered w-full max-w-xl" />
                                     </div>

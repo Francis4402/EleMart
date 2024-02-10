@@ -78,7 +78,7 @@ const Hero = () => {
                     {
                         logoIcons.map(icons => <div key={icons.name}>
                             <Link to={`/${icons.name.toLowerCase()}`}>
-                                <motion.button whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} transition={{type: "spring", damping: 14, stiffness: 500}} className="bg-white hover:bg-gray-200 p-10 rounded-xl shadow">
+                                <motion.button whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} transition={{type: "spring", damping: 14, stiffness: 500}} className="bg-white hover:bg-gray-200 p-10 rounded-xl shadow text-black">
                                     <p className="flex justify-center">{icons.icon}</p>
                                     <p className="text-center">{icons.name}</p>
                                 </motion.button>
@@ -87,18 +87,18 @@ const Hero = () => {
                     }
                 </div>
 
-                <div className="justify-center grid text-center py-14">
-                    <h3 className="text-2xl font-semibold">Featured Products</h3>
+                <div className="justify-center grid text-center py-14 text-black">
+                    <h3 className="text-2xl font-semibold">All Products</h3>
                     <p>Check && Get Your Desired Product!</p>
                 </div>
 
                 <div>
                     {
                         products.length === 0 ? <h1 className="text-2xl font-semibold min-h-screen w-full justify-center items-center flex">There is no data</h1> :
-                            <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 my-4'>
+                            <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 my-4 sm:px-0 px-5'>
                                 {
                                     products.map(w => <div key={w?._id}>
-                                        <div className="card w-full h-fit bg-base-100 shadow-xl">
+                                        <div className="card w-full h-fit bg-white shadow-xl">
                                             <figure>
                                                 <Link to={`/${w?.name}/${w?._id}`}><img src={w.image} width={250} height={100} alt="i" /></Link>
                                             </figure>

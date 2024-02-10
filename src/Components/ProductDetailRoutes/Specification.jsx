@@ -301,7 +301,7 @@ const Specification = () => {
                 }
 
                 {
-                    actype && technology === '' ? '' : <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Basic Information</p>
+                    actype === '' ? '' : <p className="font-semibold my-4 bg-gray-100 p-2 rounded-lg text-blue-700">Basic Information</p>
                 }
 
                 {

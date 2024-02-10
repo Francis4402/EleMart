@@ -16,7 +16,7 @@ const UpdateProduct = () => {
 
     const {register, handleSubmit, reset, formState: {errors}} = useForm();
 
-    const {_id,name,price,modelname,size,displaytype,resolution,brightness,displayfeatures,chipset,cputype,gpu,ram,internalstorage,cardslot,rcamresolution,rcamfeatures,rvideorecording,fcamresolution,fcamfeatures,fcamvideorecording,speaker,audiofeatures,sim,wifi,bluetooth,gps,nfc,audiojack,operatingsystem,sensor,iprating,otherfeatures,batterytype,charging,dimension,weight,materials,colors,warranty,installationspolicy,actype,technology,capacity,coverage,energysavingrating,capacityofcooling,noiselevel,compressortype,condenser,refrigeranttype,others,powertype,powerconsumption,acweight,drivermagnet,impedance,headphonesensitivity,inputjack,driverdiameter,connectivity,headphonesdimensions,headphonesweight,headphonescolor,headphonescablelength,microphoneSize,microphonesensitivity,microphonepickup,droneweight,dronemaxspeed,dronemaxflighttime,dronefov,feature1,feature2,feature3,feature4,description1title,description2title,description3title,description4title,description5title,description6title,description7title,description1,description2,description3,description4,description5,description6,description7} = productData;
+    const {_id,name,price,regularPrice, modelname,size,displaytype,refreshrate, resolution,brightness,displayfeatures,chipset,cputype,gpu,ram,internalstorage,cardslot,rcamresolution,rcamfeatures,rvideorecording,fcamresolution,fcamfeatures,fcamvideorecording,speaker,audiofeatures,sim,wifi,bluetooth,gps,nfc,audiojack,operatingsystem,sensor,iprating,otherfeatures,batterytype,charging,dimension,weight,materials,colors,warranty,installationspolicy,actype,technology,capacity,coverage,energysavingrating,capacityofcooling,noiselevel,compressortype,condenser,refrigeranttype,others,powertype,powerconsumption,acweight,drivermagnet,impedance,headphonesensitivity,inputjack,driverdiameter,connectivity,headphonesdimensions,headphonesweight,headphonescolor,headphonescablelength,microphoneSize,microphonesensitivity,microphonepickup,droneweight,dronemaxspeed,dronemaxflighttime,dronefov,feature1,feature2,feature3,feature4,description1title,description2title,description3title,description4title,description5title,description6title,description7title,description1,description2,description3,description4,description5,description6,description7} = productData;
     const onSubmit = async (data) => {
         const imageFile = {image: data.image[0]}
         const res = await axiosPublic.post(image_hosting_api, imageFile, {
@@ -28,12 +28,14 @@ const UpdateProduct = () => {
             const productsdata = {
                 name: data.name,
                 image: res.data.data.display_url,
-                price: data.price,
+                price: parseInt(data.price, 10),
+                regularPrice: parseInt(data.regularPrice, 10),
                 modelname: data.modelname,
                 size: data.size,
                 displaytype: data.displaytype,
                 resolution: data.resolution,
                 brightness: data.brightness,
+                refreshrate: data.refreshrate,
                 displayfeatures: data.displayfeatures,
                 chipset: data.chipset,
                 cputype: data.cputype,
@@ -156,7 +158,7 @@ const UpdateProduct = () => {
                                     <label className="label">
                                         <span className="label-text">Product Name</span>
                                     </label>
-                                    <input type="text" {...register('name', {required:true})} defaultValue={name} placeholder="Name" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={name} {...register('name', {required:true})} placeholder="Name" className="input input-bordered w-full max-w-xl" />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
@@ -197,7 +199,7 @@ const UpdateProduct = () => {
                                                     <option value="google">Google</option>
                                                     <option value="realme">Realme</option>
                                                     <option value="huawei">Huawei</option>
-                                                    <option value="walton">Walton</option>
+                                                    <option value="kospet">KOSPET</option>
                                                 </>
                                             )}
 
@@ -294,23 +296,23 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Product Price</span>
                                         </label>
-                                        <input type="text" {...register('price', {required: true})} defaultValue={price} placeholder="Price" className="input input-bordered w-full max-w-xl" />
+                                        <input type="number" defaultValue={price} {...register('price', {required: true})} placeholder="Price" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text">Model Name</span>
+                                            <span className="label-text">Regular Price</span>
                                         </label>
-                                        <input type="text" {...register('modelname', {required: true})} defaultValue={modelname} placeholder="Model Name" className="input input-bordered w-full max-w-xl" />
+                                        <input type="number" defaultValue={regularPrice} {...register('regularPrice')} placeholder="Regular Price" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
                                 <div className="grid lg:grid-cols-2 gap-4">
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text">Price Discount</span>
+                                            <span className="label-text">Model Name</span>
                                         </label>
-                                        <input type="number" {...register('priceDiscount', {required: true})} placeholder="Price Discount" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={modelname} {...register('modelname', {required: true})} placeholder="Model Name" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
@@ -335,14 +337,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Size</span>
                                         </label>
-                                        <input type="text" {...register('size')} defaultValue={size} placeholder="Display Size" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={size} {...register('size')} placeholder="Display Size" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Display Type</span>
                                         </label>
-                                        <input type="text" {...register('displaytype')} defaultValue={displaytype} placeholder="Display Type" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={displaytype} {...register('displaytype')} placeholder="Display Type" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -352,14 +354,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Resolution</span>
                                         </label>
-                                        <input type="text" {...register('resolution')} defaultValue={resolution} placeholder="DispayResolution" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={resolution} {...register('resolution')} placeholder="DispayResolution" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Brightness</span>
                                         </label>
-                                        <input type="text" {...register('brightness')} defaultValue={brightness} placeholder="Brightness" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={brightness} {...register('brightness')} placeholder="Brightness" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -367,11 +369,17 @@ const UpdateProduct = () => {
                                 <div className="grid lg:grid-cols-2 gap-4">
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text">Features</span>
+                                            <span className="label-text">Refresh Rate</span>
                                         </label>
-                                        <input type="text" {...register('displayfeatures')} defaultValue={displayfeatures} placeholder="Features" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={refreshrate} {...register('refreshrate')} placeholder="Refresh Rate" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Features</span>
+                                        </label>
+                                        <input type="text" defaultValue={displayfeatures} {...register('displayfeatures')} placeholder="Features" className="input input-bordered w-full max-w-xl" />
+                                    </div>
                                 </div>
 
                                 <div className="my-2">
@@ -383,14 +391,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Chipset</span>
                                         </label>
-                                        <input type="text" {...register('chipset')} defaultValue={chipset} placeholder="Chipset" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={chipset} {...register('chipset')} placeholder="Chipset" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">CPU Type</span>
                                         </label>
-                                        <input type="text" {...register('cputype')} defaultValue={cputype} placeholder="Cpu-Type" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={cputype} {...register('cputype')} placeholder="Cpu-Type" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -399,7 +407,7 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">GPU</span>
                                         </label>
-                                        <input type="text" {...register('gpu')} defaultValue={gpu} placeholder="GPU" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={gpu} {...register('gpu')} placeholder="GPU" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                 </div>
@@ -413,14 +421,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">RAM</span>
                                         </label>
-                                        <input type="text" {...register('ram')} defaultValue={ram} placeholder="RAM" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={ram} {...register('ram')} placeholder="RAM" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Internal Storage</span>
                                         </label>
-                                        <input type="text" {...register('internalstorage')} defaultValue={internalstorage} placeholder="Internal Storage" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={internalstorage} {...register('internalstorage')} placeholder="Internal Storage" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -429,7 +437,7 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Card Slot</span>
                                         </label>
-                                        <input type="text" {...register('cardslot')} defaultValue={cardslot} placeholder="Card-Slot" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={cardslot} {...register('cardslot')} placeholder="Card-Slot" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                 </div>
@@ -443,14 +451,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">RCam Resolution</span>
                                         </label>
-                                        <input type="text" {...register('rcamresolution')} defaultValue={rcamresolution} placeholder="Resolution" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={rcamresolution} {...register('rcamresolution')} placeholder="Resolution" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">RCam Features</span>
                                         </label>
-                                        <input type="text" {...register('rcamfeatures')} defaultValue={rcamfeatures} placeholder="Features" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={rcamfeatures} {...register('rcamfeatures')} placeholder="Features" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -459,7 +467,7 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">RVideo Recording</span>
                                         </label>
-                                        <input type="text" {...register('rvideorecording')} defaultValue={rvideorecording} placeholder="Video Recording" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={rvideorecording} {...register('rvideorecording')} placeholder="Video Recording" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                 </div>
@@ -473,14 +481,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">FCam Resolution</span>
                                         </label>
-                                        <input type="text" {...register('fcamresolution')} defaultValue={fcamresolution} placeholder="Resolution" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={fcamresolution} {...register('fcamresolution')} placeholder="Resolution" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">FCam Features</span>
                                         </label>
-                                        <input type="text" {...register('fcamfeatures')} defaultValue={fcamfeatures} placeholder="Features" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={fcamfeatures} {...register('fcamfeatures')} placeholder="Features" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -489,7 +497,7 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">FCam Video Recording</span>
                                         </label>
-                                        <input type="text" {...register('fcamvideorecording')} defaultValue={fcamvideorecording} placeholder="Video Recording" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={fcamvideorecording} {...register('fcamvideorecording')} placeholder="Video Recording" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                 </div>
@@ -503,14 +511,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Speaker</span>
                                         </label>
-                                        <input type="text" {...register('speaker')} defaultValue={speaker} placeholder="Speaker" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={speaker} {...register('speaker')} placeholder="Speaker" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Audio Features</span>
                                         </label>
-                                        <input type="text" {...register('audiofeatures')} defaultValue={audiofeatures} placeholder="Audio Features" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={audiofeatures} {...register('audiofeatures')} placeholder="Audio Features" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -524,14 +532,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">SIM</span>
                                         </label>
-                                        <input type="text" {...register('sim')} defaultValue={sim} placeholder="Sim" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={sim} {...register('sim')} placeholder="Sim" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Wi-Fi</span>
                                         </label>
-                                        <input type="text" {...register('wifi')} defaultValue={wifi} placeholder="Wi-Fi" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={wifi} {...register('wifi')} placeholder="Wi-Fi" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -540,14 +548,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Bluetooth</span>
                                         </label>
-                                        <input type="text" {...register('bluetooth')} defaultValue={bluetooth} placeholder="Bluetooth" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={bluetooth} {...register('bluetooth')} placeholder="Bluetooth" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">GPS</span>
                                         </label>
-                                        <input type="text" {...register('gps')} defaultValue={gps} placeholder="GPS" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={gps} {...register('gps')} placeholder="GPS" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -556,14 +564,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">NFC</span>
                                         </label>
-                                        <input type="text" {...register('nfc')} defaultValue={nfc} placeholder="NFC" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={nfc} {...register('nfc')} placeholder="NFC" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Audio Jack</span>
                                         </label>
-                                        <input type="text" {...register('audiojack')} defaultValue={audiojack} placeholder="Audio Jack" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={audiojack} {...register('audiojack')} placeholder="Audio Jack" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -575,7 +583,7 @@ const UpdateProduct = () => {
                                     <label className="label">
                                         <span className="label-text">Operating System</span>
                                     </label>
-                                    <input type="text" {...register('operatingsystem')} defaultValue={operatingsystem} placeholder="Operating System" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={operatingsystem} {...register('operatingsystem')} placeholder="Operating System" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="my-2">
@@ -587,14 +595,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Sensors</span>
                                         </label>
-                                        <input type="text" {...register('sensor')} defaultValue={sensor} placeholder="Sensor" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={sensor} {...register('sensor')} placeholder="Sensor" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">IP Rating</span>
                                         </label>
-                                        <input type="text" {...register('iprating')} defaultValue={iprating} placeholder="IP Rating" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={iprating} {...register('iprating')} placeholder="IP Rating" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -603,7 +611,7 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Other Features</span>
                                         </label>
-                                        <input type="text" {...register('otherfeatures')} defaultValue={otherfeatures} placeholder="Other Features" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={otherfeatures} {...register('otherfeatures')} placeholder="Other Features" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                 </div>
@@ -617,14 +625,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Battery Type</span>
                                         </label>
-                                        <input type="text" {...register('batterytype')} defaultValue={batterytype} placeholder="Battery type" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={batterytype} {...register('batterytype')} placeholder="Battery type" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Fast Charging</span>
                                         </label>
-                                        <input type="text" {...register('charging')} defaultValue={charging} placeholder="Fast Charging" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={charging} {...register('charging')} placeholder="Fast Charging" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -637,14 +645,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Dimension</span>
                                         </label>
-                                        <input type="text" {...register('dimension')} defaultValue={dimension} placeholder="Dimension" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={dimension} {...register('dimension')} placeholder="Dimension" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Weight</span>
                                         </label>
-                                        <input type="text" {...register('weight')} defaultValue={weight} placeholder="Weight" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={weight} {...register('weight')} placeholder="Weight" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -653,14 +661,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Body Material</span>
                                         </label>
-                                        <input type="text" {...register('materials')} defaultValue={materials} placeholder="Body Materials" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={materials} {...register('materials')} placeholder="Body Materials" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Colors</span>
                                         </label>
-                                        <input type="text" {...register('colors')} defaultValue={colors} placeholder="Colors" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={colors} {...register('colors')} placeholder="Colors" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -672,14 +680,14 @@ const UpdateProduct = () => {
                                     <label className="label">
                                         <span className="label-text">Warranty</span>
                                     </label>
-                                    <input type="text" {...register('warranty')} defaultValue={warranty} placeholder="Warranty" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={warranty} {...register('warranty')} placeholder="Warranty" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Installation Policy</span>
                                     </label>
-                                    <input type="text" {...register('installationspolicy')} defaultValue={installationspolicy} placeholder="Installation Policy" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={installationspolicy} {...register('installationspolicy')} placeholder="Installation Policy" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
 
@@ -692,14 +700,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Type</span>
                                         </label>
-                                        <input type="text" {...register('actype')} defaultValue={actype} placeholder="Type" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={actype} {...register('actype')} placeholder="Type" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Technology</span>
                                         </label>
-                                        <input type="text" {...register('technology')} defaultValue={technology} placeholder="Technology" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={technology} {...register('technology')} placeholder="Technology" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -708,14 +716,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Capacity</span>
                                         </label>
-                                        <input type="text" {...register('capacity')} defaultValue={capacity} placeholder="Capacity" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={capacity} {...register('capacity')} placeholder="Capacity" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Coverage</span>
                                         </label>
-                                        <input type="text" {...register('coverage')} defaultValue={coverage} placeholder="Capacity" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={coverage} {...register('coverage')} placeholder="Coverage" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -724,14 +732,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Energy Saving Rating</span>
                                         </label>
-                                        <input type="text" {...register('energysavingrating')} defaultValue={energysavingrating} placeholder="Energy Saving Rating" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={energysavingrating} {...register('energysavingrating')} placeholder="Energy Saving Rating" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Capacity of Cooling(BTU)</span>
                                         </label>
-                                        <input type="text" {...register('capacityofcooling')} defaultValue={capacityofcooling} placeholder="Capacity of Cooling" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={capacityofcooling} {...register('capacityofcooling')} placeholder="Capacity of Cooling" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -740,14 +748,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Noise Level</span>
                                         </label>
-                                        <input type="text" {...register('noiselevel')} defaultValue={noiselevel} placeholder="Noise Level" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={noiselevel} {...register('noiselevel')} placeholder="Noise Level" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Compressor Type</span>
                                         </label>
-                                        <input type="text" {...register('compressortype')} defaultValue={compressortype} placeholder="Compressor Type" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={compressortype} {...register('compressortype')} placeholder="Compressor Type" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -756,14 +764,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Condenser Type</span>
                                         </label>
-                                        <input type="text" {...register('condenser')} defaultValue={condenser} placeholder="Condenser" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={condenser} {...register('condenser')} placeholder="Condenser" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Refrigerant Type</span>
                                         </label>
-                                        <input type="text" {...register('refrigeranttype')} defaultValue={refrigeranttype} placeholder="Refrigerant Type" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={refrigeranttype} {...register('refrigeranttype')} placeholder="Refrigerant Type" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -772,7 +780,7 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Others</span>
                                         </label>
-                                        <input type="text" {...register('others')} defaultValue={others} placeholder="Others" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={others} {...register('others')} placeholder="Others" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -781,14 +789,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Power Type</span>
                                         </label>
-                                        <input type="text" {...register('powertype')} defaultValue={powertype} placeholder="Power Type" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={powertype} {...register('powertype')} placeholder="Power Type" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Power Consumption</span>
                                         </label>
-                                        <input type="text" {...register('powerconsumption')} defaultValue={powerconsumption} placeholder="Power Consumption" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={powerconsumption} {...register('powerconsumption')} placeholder="Power Consumption" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -803,14 +811,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Feature 1</span>
                                         </label>
-                                        <input type="text" {...register('feature1')} defaultValue={feature1} placeholder="Feature 1" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={feature1} {...register('feature1')} placeholder="Feature 1" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Feature 2</span>
                                         </label>
-                                        <input type="text" {...register('feature2')} defaultValue={feature2} placeholder="Feature 2" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={feature2} {...register('feature2')} placeholder="Feature 2" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -819,14 +827,14 @@ const UpdateProduct = () => {
                                         <label className="label">
                                             <span className="label-text">Feature 3</span>
                                         </label>
-                                        <input type="text" {...register('feature3')} defaultValue={feature3} placeholder="Feature 3" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={feature3} {...register('feature3')} placeholder="Feature 3" className="input input-bordered w-full max-w-xl" />
                                     </div>
 
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Feature 4</span>
                                         </label>
-                                        <input type="text" {...register('feature4')} defaultValue={feature4} placeholder="Feature 4" className="input input-bordered w-full max-w-xl" />
+                                        <input type="text" defaultValue={feature4} {...register('feature4')} placeholder="Feature 4" className="input input-bordered w-full max-w-xl" />
                                     </div>
                                 </div>
 
@@ -838,7 +846,7 @@ const UpdateProduct = () => {
                                     <label className="label">
                                         <span className="label-text">AC Weight</span>
                                     </label>
-                                    <input type="text" {...register('acweight')} defaultValue={acweight} placeholder="AC Weight" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={acweight} {...register('acweight')} placeholder="AC Weight" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="my-2">
@@ -849,70 +857,70 @@ const UpdateProduct = () => {
                                     <label className="label">
                                         <span className="label-text">Driver Magnet</span>
                                     </label>
-                                    <input type="text" {...register('drivermagnet')} defaultValue={drivermagnet} placeholder="Driver Magnet" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={drivermagnet} {...register('drivermagnet')}  placeholder="Driver Magnet" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Impedance</span>
                                     </label>
-                                    <input type="text" {...register('impedance')} defaultValue={impedance} placeholder="Impedance" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={impedance} {...register('impedance')} placeholder="Impedance" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Sensitivity</span>
                                     </label>
-                                    <input type="text" {...register('headphonesensitivity')} defaultValue={headphonesensitivity} placeholder="Sensitivity" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={headphonesensitivity} {...register('headphonesensitivity')} placeholder="Sensitivity" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Input Jack</span>
                                     </label>
-                                    <input type="text" {...register('inputjack')} defaultValue={inputjack} placeholder="Input Jack" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={inputjack} {...register('inputjack')} placeholder="Input Jack" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Driver Diameter</span>
                                     </label>
-                                    <input type="text" {...register('driverdiameter')} defaultValue={driverdiameter} placeholder="Driver Diameter" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={driverdiameter} {...register('driverdiameter')} placeholder="Driver Diameter" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Connectivity</span>
                                     </label>
-                                    <input type="text" {...register('connectivity')} defaultValue={connectivity} placeholder="Connectivity" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={connectivity} {...register('connectivity')} placeholder="Connectivity" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Dimensions</span>
                                     </label>
-                                    <input type="text" {...register('headphonesdimensions')} defaultValue={headphonesdimensions} placeholder="Dimensions" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={headphonesdimensions} {...register('headphonesdimensions')} placeholder="Dimensions" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Weight</span>
                                     </label>
-                                    <input type="text" {...register('headphonesweight')} defaultValue={headphonesweight} placeholder="Weight" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={headphonesweight} {...register('headphonesweight')} placeholder="Weight" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Color</span>
                                     </label>
-                                    <input type="text" {...register('headphonescolor')} defaultValue={headphonescolor} placeholder="Color" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={headphonescolor} {...register('headphonescolor')} placeholder="Color" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Cable Length</span>
                                     </label>
-                                    <input type="text" {...register('headphonescablelength')} defaultValue={headphonescablelength} placeholder="Cable Length" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={headphonescablelength} {...register('headphonescablelength')} placeholder="Cable Length" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="my-2">
@@ -923,21 +931,21 @@ const UpdateProduct = () => {
                                     <label className="label">
                                         <span className="label-text">Microphone Size</span>
                                     </label>
-                                    <input type="text" {...register('microphoneSize')} defaultValue={microphoneSize} placeholder="Microphone Size" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={microphoneSize} {...register('microphoneSize')} placeholder="Microphone Size" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Sensitivity</span>
                                     </label>
-                                    <input type="text" {...register('microphonesensitivity')} defaultValue={microphonesensitivity} placeholder="Sensitivity" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={microphonesensitivity} {...register('microphonesensitivity')} placeholder="Sensitivity" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Pick-up Pattern</span>
                                     </label>
-                                    <input type="text" {...register('microphonepickup')} defaultValue={microphonepickup} placeholder="Pick-up Pattern" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={microphonepickup} {...register('microphonepickup')} placeholder="Pick-up Pattern" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="my-2">
@@ -948,21 +956,21 @@ const UpdateProduct = () => {
                                     <label className="label">
                                         <span className="label-text">Weight</span>
                                     </label>
-                                    <input type="text" {...register('droneweight')} defaultValue={droneweight} placeholder="Weight" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={droneweight} {...register('droneweight')} placeholder="Weight" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Max Speed</span>
                                     </label>
-                                    <input type="text" {...register('dronemaxspeed')} defaultValue={dronemaxspeed} placeholder="Max Speed" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={dronemaxspeed} {...register('dronemaxspeed')} placeholder="Max Speed" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Max Flight Time</span>
                                     </label>
-                                    <input type="text" {...register('dronemaxflighttime')} defaultValue={dronemaxflighttime} placeholder="Max Flight Time" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={dronemaxflighttime} {...register('dronemaxflighttime')} placeholder="Max Flight Time" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="my-2">
@@ -973,7 +981,7 @@ const UpdateProduct = () => {
                                     <label className="label">
                                         <span className="label-text">FOV</span>
                                     </label>
-                                    <input type="text" {...register('dronefov')} defaultValue={dronefov} placeholder="Fov" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={dronefov} {...register('dronefov')} placeholder="Fov" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="my-2">
@@ -984,98 +992,98 @@ const UpdateProduct = () => {
                                     <label className="label">
                                         <span className="label-text">Description1 Title</span>
                                     </label>
-                                    <input type="text" {...register('description1title')} defaultValue={description1title} placeholder="Description1 Title" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={description1title} {...register('description1title')} placeholder="Description1 Title" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Description-1</span>
                                     </label>
-                                    <textarea type="text" {...register('description1')} defaultValue={description1} placeholder="Description 1" className="textarea textarea-bordered w-full max-w-xl" />
+                                    <textarea type="text" defaultValue={description1} {...register('description1')} placeholder="Description 1" className="textarea textarea-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Description2 Title</span>
                                     </label>
-                                    <input type="text" {...register('description2title')} defaultValue={description2title} placeholder="Description2 Title" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={description2title} {...register('description2title')} placeholder="Description2 Title" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Description-2</span>
                                     </label>
-                                    <textarea type="text" {...register('description2')} defaultValue={description2} placeholder="Description 2" className="textarea textarea-bordered w-full max-w-xl" />
+                                    <textarea type="text" defaultValue={description2} {...register('description2')} placeholder="Description 2" className="textarea textarea-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Description3 Title</span>
                                     </label>
-                                    <input type="text" {...register('description3title')} defaultValue={description3title} placeholder="Description3 Title" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={description3title} {...register('description3title')} placeholder="Description3 Title" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Description-3</span>
                                     </label>
-                                    <textarea type="text" {...register('description3')} defaultValue={description3} placeholder="Description 3" className="textarea textarea-bordered w-full max-w-xl" />
+                                    <textarea type="text" defaultValue={description3} {...register('description3')} placeholder="Description 3" className="textarea textarea-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Description4 Title</span>
                                     </label>
-                                    <input type="text" {...register('description4title')} defaultValue={description4title} placeholder="Description4 Title" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={description4title} {...register('description4title')} placeholder="Description4 Title" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Description-4</span>
                                     </label>
-                                    <textarea type="text" {...register('description4')} defaultValue={description4} placeholder="Description 4" className="textarea textarea-bordered w-full max-w-xl" />
+                                    <textarea type="text" defaultValue={description4} {...register('description4')} placeholder="Description 4" className="textarea textarea-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Description5 Title</span>
                                     </label>
-                                    <input type="text" {...register('description5title')} defaultValue={description5title} placeholder="Description5 Title" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={description5title} {...register('description5title')} placeholder="Description5 Title" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Description-5</span>
                                     </label>
-                                    <textarea type="text" {...register('description5')} defaultValue={description5} placeholder="Description 5" className="textarea textarea-bordered w-full max-w-xl" />
+                                    <textarea type="text" defaultValue={description5} {...register('description5')} placeholder="Description 5" className="textarea textarea-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Description6 Title</span>
                                     </label>
-                                    <input type="text" {...register('description6title')} defaultValue={description6title} placeholder="Description6 Title" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={description6title} {...register('description6title')} placeholder="Description6 Title" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Description-6</span>
                                     </label>
-                                    <textarea type="text" {...register('description6')} defaultValue={description6} placeholder="Description 6" className="textarea textarea-bordered w-full max-w-xl" />
+                                    <textarea type="text" defaultValue={description6} {...register('description6')} placeholder="Description 6" className="textarea textarea-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Description7 Title</span>
                                     </label>
-                                    <input type="text" {...register('description7title')} defaultValue={description7title} placeholder="Description7 Title" className="input input-bordered w-full max-w-xl" />
+                                    <input type="text" defaultValue={description7title} {...register('description7title')} placeholder="Description7 Title" className="input input-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Description-7</span>
                                     </label>
-                                    <textarea type="text" {...register('description7')} defaultValue={description7} placeholder="Description 7" className="textarea textarea-bordered w-full max-w-xl" />
+                                    <textarea type="text" defaultValue={description7} {...register('description7')} placeholder="Description 7" className="textarea textarea-bordered w-full max-w-xl" />
                                 </div>
 
                                 <div className="form-control mt-6">

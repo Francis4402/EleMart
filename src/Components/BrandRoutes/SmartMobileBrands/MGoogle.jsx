@@ -27,7 +27,7 @@ const MGoogle = () => {
                     axiosPublic.delete(`/addproduct/${id}`)
                         .then(res => {
                             if(res.data.deletedCount > 0){
-                                refetch();
+                                refetch().then(() => {});
                                 Swal.fire({
                                     title: "Deleted!",
                                     text: "Product Remove.",
@@ -43,10 +43,10 @@ const MGoogle = () => {
         <div>
             {
                 googlephone.length === 0 ? <h1 className="text-2xl font-semibold min-h-screen w-full justify-center items-center flex">There is no data</h1> :
-                    <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 my-4'>
+                    <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 my-4 sm:px-0 px-5'>
                         {
                             googlephone.map(w => <div key={w?._id}>
-                                <div className="card w-full h-fit bg-base-100 shadow-xl">
+                                <div className="card w-full h-fit bg-white shadow-xl">
                                     <figure><Link to={`/${w?.name}/${w?._id}`}><img src={w.image} width={250} height={100} alt="i" /></Link></figure>
 
                                     <div className="card-body">

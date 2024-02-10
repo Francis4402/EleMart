@@ -23,14 +23,14 @@ const Banner = () => {
                                 <div className="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-8">
                                     <div className="flex items-center space-x-6 lg:space-x-8">
                                         <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                            <div className="h-64 w-64 overflow-hidden rounded-lg bg-gray-100 shadow-md">
+                                            <div className="md:h-64 md:w-64 h-32 w-32 overflow-hidden rounded-lg bg-gray-100 shadow-md">
                                                 <img
                                                     src="https://i.ibb.co/88D1pJK/xbox-wireless-1-500x500.png"
                                                     alt="i"
                                                     className="h-full w-full object-cover object-center"
                                                 />
                                             </div>
-                                            <div className="h-64 w-64 overflow-hidden rounded-lg bg-gray-100 shadow-md">
+                                            <div className="md:h-64 md:w-64 h-32 w-32 overflow-hidden rounded-lg bg-gray-100 shadow-md">
                                                 <img
                                                     src="https://i.ibb.co/tPGqtJt/mijia-induction-cooker-youth-edition-01-500x500.png"
                                                     alt=""
@@ -39,21 +39,21 @@ const Banner = () => {
                                             </div>
                                         </div>
                                         <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                            <div className="h-64 w-64 overflow-hidden rounded-lg bg-gray-100 shadow-md">
+                                            <div className="md:h-64 md:w-64 h-32 w-32 overflow-hidden rounded-lg bg-gray-100 shadow-md">
                                                 <img
                                                     src="https://i.ibb.co/gR2bjM5/watch-gt-3-01-500x500.png"
                                                     alt=""
                                                     className="h-full w-full object-cover object-center"
                                                 />
                                             </div>
-                                            <div className="h-64 w-64 overflow-hidden rounded-lg bg-gray-100 shadow-md">
+                                            <div className="md:h-64 md:w-64 h-32 w-32 overflow-hidden rounded-lg bg-gray-100 shadow-md">
                                                 <img
                                                     src="https://i.ibb.co/2jrf055/hwm70-1269s5-01-500x500.png"
                                                     alt=""
                                                     className="h-full w-full object-cover object-center"
                                                 />
                                             </div>
-                                            <div className="h-64 w-64 overflow-hidden rounded-lg bg-gray-100 shadow-md">
+                                            <div className="md:h-64 md:w-64 h-32 w-32 overflow-hidden rounded-lg bg-gray-100 shadow-md">
                                                 <img
                                                     src="https://i.ibb.co/FH2gmnR/asga24fmtb-01-500x500.png"
                                                     alt=""
@@ -62,14 +62,14 @@ const Banner = () => {
                                             </div>
                                         </div>
                                         <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                            <div className="h-64 w-44 overflow-hidden rounded-lg bg-gray-100 shadow-md">
+                                            <div className="md:h-64 md:w-44 h-32 w-28 overflow-hidden rounded-lg bg-gray-100 shadow-md">
                                                 <img
                                                     src="https://i.ibb.co/5RgbY54/pro-x-gaming-headset-2-500x500.png"
                                                     alt=""
                                                     className="h-full w-full object-cover object-center"
                                                 />
                                             </div>
-                                            <div className="h-64 w-64 overflow-hidden rounded-lg bg-gray-100 shadow-md">
+                                            <div className="md:h-64 md:w-64 h-32 w-32 overflow-hidden rounded-lg bg-gray-100 shadow-md">
                                                 <img
                                                     src="https://i.ibb.co/1fdKY7c/oneplus-nord-ce-3-lite-5g-black-500x500.png"
                                                     alt=""
